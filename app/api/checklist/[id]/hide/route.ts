@@ -1,10 +1,10 @@
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { authConfig } from "@/lib/auth.config";
 
 export async function PATCH(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   const session = await getServerSession(authConfig);
@@ -18,7 +18,7 @@ export async function PATCH(
     return NextResponse.json({ error: "ID de tâche manquant" }, { status: 400 });
   }
 
-  const {visible} = await req.json();
+  const { visible } = await req.json();
 
   try {
     // 🔐 Vérifie la propriété de la tâche
@@ -27,13 +27,11 @@ export async function PATCH(
     });
 
     if (!task || task.userId !== session.user.id) {
-      return NextResponse.json({ error: "Tâche introuvable ou interdite" }, { status: 404 });
+      return NextResponse.json(
+        { error: "Tâche introuvable ou interdite" },
+        { status: 404 }
+      );
     }
-
-    // ❌ Optionnel : empêcher de masquer une tâche personnalisée
-    // if (task.isCustom) {
-    //   return NextResponse.json({ error: "Impossible de masquer une tâche personnalisée" }, { status: 400 });
-    // }
 
     const updated = await prisma.checklistItem.update({
       where: { id: taskId },

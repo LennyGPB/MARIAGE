@@ -1,6 +1,3 @@
-import { ShimmerButton } from "@/components/magicui/shimmer-button";
-import { SparklesText } from "@/components/magicui/sparkles-text";
-import Link from "next/link";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Image from "next/image";
 

@@ -9,14 +9,15 @@ type Props = {
   answers: QuizAnswers
 }
 
+
 type QuizAnswers = {
   weddingDate?: string
   weddingType?: string
   locationKnown?: string
-  guestCount?: number
-  budget?: number
+  guestCount?: string
+  budget?: string
   theme?: string
-  urgent?: boolean
+  urgent?: string[]
   prestataires?: string[]
   organisateurs?: string
 }

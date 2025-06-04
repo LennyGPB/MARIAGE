@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import EditIcon from '@mui/icons-material/Edit';
-import { format } from "date-fns"
-import { fr } from "date-fns/locale"
 import { formatFrenchDate } from "@/lib/date";
-import { GridPattern } from "@/components/magicui/grid-pattern";
 
 type TaskType = {
   id: string | number;

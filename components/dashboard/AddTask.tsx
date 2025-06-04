@@ -1,18 +1,5 @@
 import { useState } from "react";
 
-type TaskType = {
-  id: string | number;
-  title: string;
-  description: string;
-  category: string;
-  idealDate: string; // Date ISO
-  offset: number; 
-  status: "todo" | "in_progress" | "done"
-  priority: string; 
-  isCustom: boolean;
-  visible: boolean;
-}
-
 type Props = {
   onBack: () => void;
 }

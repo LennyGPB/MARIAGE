@@ -13,14 +13,13 @@ type QuizAnswers = {
   weddingDate?: string
   weddingType?: string
   locationKnown?: string
-  guestCount?: number
-  budget?: number
+  guestCount?: string
+  budget?: string
   theme?: string
-  urgent?: boolean
+  urgent?: string[]
   prestataires?: string[]
   organisateurs?: string
 }
-
 
 export default function Organisateurs({ onAnswer, onNext, answers }: Props) {
   const [selected, setSelected] = useState("");

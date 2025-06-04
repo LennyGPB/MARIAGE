@@ -7,6 +7,16 @@ import { authConfig } from "@/lib/auth.config";
 // 🔑 Initialise le client OpenAI
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
 
+interface ChecklistItemInput {
+  title: string;
+  description: string;
+  category: string;
+  offset: number;
+  priority: string;
+  organisateurs?: string;
+  prestataires?: string;
+}
+
 export async function POST() {
   const session = await getServerSession(authConfig);
 
@@ -81,7 +91,7 @@ export async function POST() {
 
     // 📅 Calcule les dates idéales et enregistre chaque tâche
     const tasks = await Promise.all(
-      checklist.map((item: any) => {
+      checklist.map((item: ChecklistItemInput) => {
         const idealDate = new Date(onboarding.weddingDate);
         idealDate.setMonth(idealDate.getMonth() + item.offset);
 

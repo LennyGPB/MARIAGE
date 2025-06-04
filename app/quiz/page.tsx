@@ -20,10 +20,10 @@ type QuizAnswers = {
   weddingDate?: string
   weddingType?: string
   locationKnown?: string
-  guestCount?: number
-  budget?: number
+  guestCount?: string
+  budget?: string
   theme?: string
-  urgent?: boolean
+  urgent?: string[]
   prestataires?: string[]
   organisateurs?: string
 }
@@ -48,16 +48,17 @@ export default function Quiz() {
     const { data: session, status } = useSession();
     const goNext = () => setStep((prev) => prev + 1)
 
-  const handleAnswer = (key: keyof QuizAnswers, value: any) => {
+  const handleAnswer = <K extends keyof QuizAnswers>(key: K, value: QuizAnswers[K]) => {
     const updated = {
       ...answers,
       [key]: value,
-    }
+    };
 
-    setAnswers(updated)
-    localStorage.setItem("quizAnswers", JSON.stringify(updated))
-    goNext()
-  }
+    setAnswers(updated);
+    localStorage.setItem("quizAnswers", JSON.stringify(updated));
+    goNext();
+  };
+
 
   useEffect(() => {
     const saved = localStorage.getItem("quizAnswers")

@@ -1,15 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import EditIcon from '@mui/icons-material/Edit';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
-import EditTask from "./EditTask";
-import { Button } from "@mui/material";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { GridPattern } from "@/components/magicui/grid-pattern";
-import { DotPattern } from "@/components/magicui/dot-pattern";
 
 type TaskType = {
   id: string | number;
@@ -30,7 +24,6 @@ type Props = {
   onBack: () => void;
   onEdit: () => void;
 }
-
 
 export default function FullTask({ task, onBack, onEdit  }: Props) {
     const [isOpen, setIsOpen] = useState(false);

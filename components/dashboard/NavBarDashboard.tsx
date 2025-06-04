@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AnimatedCircularProgressBar } from "@/components/magicui/animated-circular-progress-bar";
-import CategoryIcon from '@mui/icons-material/Category';
 
 export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleChange, onCategoryChange, onEditDate} : { 
         onAddTask?: () => void;

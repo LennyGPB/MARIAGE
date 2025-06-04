@@ -1,4 +1,3 @@
-// app/api/checklist/editDate/route.ts
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
@@ -7,6 +6,16 @@ import { authConfig } from "@/lib/auth.config";
 
 // Initialisation OpenAI
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
+
+interface ChecklistItemInput {
+  title: string;
+  description: string;
+  category: string;
+  offset: number;
+  priority: string;
+  organisateurs?: string;
+  prestataires?: string;
+}
 
 export async function PATCH(req: Request) {
   const session = await getServerSession(authConfig);
@@ -63,8 +72,10 @@ export async function PATCH(req: Request) {
 
     const checklist = JSON.parse(completion.choices[0].message.content || "[]");
 
+
+
     const tasks = await Promise.all(
-      checklist.map((item: any) => {
+      checklist.map((item: ChecklistItemInput) => {
         const idealDate = new Date(newWeddingDate);
         idealDate.setMonth(idealDate.getMonth() + item.offset);
 

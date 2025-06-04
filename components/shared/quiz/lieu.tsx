@@ -1,7 +1,5 @@
 "use client";
 
-import { DayPicker } from 'react-day-picker'
-import { fr } from 'date-fns/locale'
 import { useState } from "react";
 import BtnQuiz from "../BtnQuiz";
 

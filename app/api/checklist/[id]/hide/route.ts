@@ -21,7 +21,6 @@ export async function PATCH(
   const { visible } = await req.json();
 
   try {
-    // 🔐 Vérifie la propriété de la tâche
     const task = await prisma.checklistItem.findUnique({
       where: { id: taskId },
     });
@@ -35,9 +34,7 @@ export async function PATCH(
 
     const updated = await prisma.checklistItem.update({
       where: { id: taskId },
-      data: {
-        visible: visible,
-      },
+      data: { visible },
     });
 
     return NextResponse.json({ task: updated });

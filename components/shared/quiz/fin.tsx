@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 export default function Fin() {
-  const [selected, setSelected] = useState<Date | undefined>()
 
     return (
         <>

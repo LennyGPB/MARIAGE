@@ -18,7 +18,6 @@ type TaskType = {
   visible: boolean;
 }
 
-
 type Props = {
   task: TaskType;
   onBack: () => void;
@@ -26,13 +25,9 @@ type Props = {
 }
 
 export default function FullTask({ task, onBack, onEdit  }: Props) {
-    const [isOpen, setIsOpen] = useState(false);
     const [isChecked, setIsChecked] = useState(task.status === "done");
-    const [editTask, setEditTask] = useState(false);
     const [isMasked, setIsMasked] = useState(!task.visible);
     const [isMaskLoading, setIsMaskLoading] = useState(false);
-
-
 
     const handleToggle = async () => {
         const newStatus = isChecked ? "todo" : "done";
@@ -81,7 +76,6 @@ export default function FullTask({ task, onBack, onEdit  }: Props) {
 
     return (
         <>
-        {!editTask &&
         <div className="mb-20 tracking-widest">
             
             <div className="flex justify-between items-center px-3">
@@ -124,11 +118,6 @@ export default function FullTask({ task, onBack, onEdit  }: Props) {
                     
             </article>
         </div>
-        }
- 
-         {/* {editTask && 
-            <EditTask task={task}  />
-        } */}
         </>
     )
 }

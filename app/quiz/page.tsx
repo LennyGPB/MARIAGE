@@ -1,11 +1,9 @@
 "use client";
 
-import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import Navbar from "@/components/shared/Navbar";
 import Budget from "@/components/shared/quiz/budget";
 import Ceremonie from "@/components/shared/quiz/ceremonie";
 import QuizDate from "@/components/shared/quiz/date";
-import Fin from "@/components/shared/quiz/fin";
 import Invite from "@/components/shared/quiz/invite";
 import Lieu from "@/components/shared/quiz/lieu";
 import Organisateurs from "@/components/shared/quiz/organisateurs";
@@ -13,7 +11,7 @@ import Prestataires from "@/components/shared/quiz/prestataires";
 import Theme from "@/components/shared/quiz/theme";
 import Urgent from "@/components/shared/quiz/urgent";
 import { useState, useEffect } from "react";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import RegisterModal from "@/components/shared/RegisterModal";
 
 type QuizAnswers = {
@@ -28,24 +26,12 @@ type QuizAnswers = {
   organisateurs?: string
 }
 
-const questions = [
-  "weddingDate",
-  "weddingType",
-  "locationKnown",
-  "guestCount",
-  "budget",
-  "theme",
-  "urgent",
-  "prestataires",
-  "organisateurs",
-]
-
 export default function Quiz() {
     const [step, setStep] = useState(0)
     const [answers, setAnswers] = useState<QuizAnswers>({})
-    const [isLoading, setIsLoading] = useState(false)
-    const [isOnBoarding, setIsOnBoarding] = useState(false)
-    const { data: session, status } = useSession();
+    // const [isLoading, setIsLoading] = useState(false)
+    // const [isOnBoarding, setIsOnBoarding] = useState(false)
+    const { data: session } = useSession();
     const goNext = () => setStep((prev) => prev + 1)
 
   const handleAnswer = <K extends keyof QuizAnswers>(key: K, value: QuizAnswers[K]) => {
@@ -84,7 +70,7 @@ export default function Quiz() {
           throw new Error("Failed to fetch onboarding status");
         }
 
-        setIsOnBoarding(true);
+        //setIsOnBoarding(true);
         setStep(9);
       } catch (error) {
         console.error("Error fetching onboarding status:", error);
@@ -96,7 +82,7 @@ export default function Quiz() {
 
 
    const handleSubmit = async () => {
-    setIsLoading(true);
+    //setIsLoading(true);
     try {
       const response = await fetch("http://localhost:3000/api/checklist/generate", {
         method: "POST",

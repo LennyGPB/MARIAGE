@@ -23,9 +23,6 @@ type QuizAnswers = {
 }
 
 export default function RegisterModal({ answers }: Props) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
 
     const [formData, setFormData] = useState({
         email: "",
@@ -35,8 +32,7 @@ export default function RegisterModal({ answers }: Props) {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Email:", email);
-        console.log("Password:", password);
+       
 
         try {
             // 1. Enregistrement de l'utilisateur
@@ -78,7 +74,8 @@ export default function RegisterModal({ answers }: Props) {
             // 5. Nettoyage du localStorage
             localStorage.removeItem("quizAnswers");
             } else {
-            setError(true);
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Erreur lors de l'inscription");
             }
         } catch (error) {
             console.error("Erreur pendant l'inscription :", error);

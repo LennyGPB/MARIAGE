@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BtnQuiz from "../BtnQuiz";
 
 type Props = {
@@ -21,9 +21,8 @@ type QuizAnswers = {
   organisateurs?: string
 }
 
-export default function Organisateurs({ onAnswer, onNext, answers }: Props) {
+export default function Organisateurs({ onAnswer, onNext }: Props) {
   const [selected, setSelected] = useState("");
-  const [isLoading, setIsLoading] = useState(false)
 
   const handleContinue = () => {
       if (!selected) return

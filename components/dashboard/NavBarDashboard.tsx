@@ -12,7 +12,6 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
         onCategoryChange?: (category: string) => void;
     }) {     
 
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     return (
         <>
         <div className="hidden md:block font-inter z-50 fixed top-5 left-5">

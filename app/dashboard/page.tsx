@@ -3,13 +3,7 @@
 import FullTask from "@/components/dashboard/FullTask";
 import NavbarDashboard from "@/components/dashboard/NavBarDashboard";
 import Task from "@/components/dashboard/Task";
-import Navbar from "@/components/shared/Navbar";
-import { AnimatedCircularProgressBar } from "@/components/magicui/animated-circular-progress-bar";
 import { GridPattern } from "@/components/magicui/grid-pattern";
-
-import QuizDate from "@/components/shared/quiz/date";
-import Link from "next/link";
-import { SparklesText } from "@/components/magicui/sparkles-text";
 import { useEffect, useState } from "react";
 import EditTask from "@/components/dashboard/EditTask";
 import AddTask from "@/components/dashboard/AddTask";

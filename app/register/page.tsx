@@ -4,7 +4,7 @@ import { BorderBeam } from "@/components/magicui/border-beam";
 import Navbar from "@/components/shared/Navbar";
 import { useState } from "react";
 
-export default function register() {
+export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
@@ -49,11 +49,11 @@ export default function register() {
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4 text-sm">
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" id="email" className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required />
+                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required />
                     </div>
                     <div className="mb-6 text-sm">
                         <label htmlFor="password" className="block text-sm font-medium text-gray-700">Mot de passe</label>
-                        <input type="password" id="password" className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required />
+                        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required />
                     </div>
                     <button type="submit" className="uppercase font-sans w-full bg-[#DB80FF] text-white font-bold py-2 px-4 rounded-xl hover:bg-purple-600 transition duration-200">S'inscrire</button>
                 </form>

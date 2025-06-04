@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { formatFrenchDate } from "@/lib/date";
 
 type TaskType = {
@@ -22,8 +22,7 @@ type Props = {
 }
 
 export default function Task({ task, onSelect }: Props) {
-      const [isOpen, setIsOpen] = useState(false);
-      const [taches, setTaches] = useState<TaskType[]>([]);
+
 
     return (
         <>

@@ -12,7 +12,7 @@ export default function Urgent({ onAnswer, onNext }: Props) {
   const [selected, setSelected] = useState<string[]>([])
 
   const toggle = (value: string) => {
-    let updated = selected.includes(value)
+    const updated = selected.includes(value)
       ? selected.filter((v) => v !== value)
       : selected.length < 3
       ? [...selected, value]

@@ -47,7 +47,3 @@ export default function Organisateurs({ onAnswer, onNext }: Props) {
         </>
     )
 }
-
-function onNext() {
-    throw new Error("Function not implemented.");
-}

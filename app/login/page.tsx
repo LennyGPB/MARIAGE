@@ -55,7 +55,7 @@ export default function Login() {
                     <button type="submit" className="uppercase font-sans w-full bg-[#DB80FF] text-white font-bold py-2 px-4 rounded-xl hover:bg-purple-600 transition duration-200">Se connecter</button>
                 </form>
             </div>
-            <p className="mt-4 text-sm text-gray-600/50">Pas encore de compte ? <a href="/register" className="text-[#DB80FF] hover:underline">S'inscrire</a></p>
+            <p className="mt-4 text-sm text-gray-600/50">Pas encore de compte ? <a href="/register" className="text-[#DB80FF] hover:underline">S&apos;inscrire</a></p>
         </section>
         </>
     )

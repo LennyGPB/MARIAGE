@@ -54,7 +54,7 @@ export default function Register() {
                         <label htmlFor="password" className="block text-sm font-medium text-gray-700">Mot de passe</label>
                         <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required />
                     </div>
-                    <button type="submit" className="uppercase font-sans w-full bg-[#DB80FF] text-white font-bold py-2 px-4 rounded-xl hover:bg-purple-600 transition duration-200">S'inscrire</button>
+                    <button type="submit" className="uppercase font-sans w-full bg-[#DB80FF] text-white font-bold py-2 px-4 rounded-xl hover:bg-purple-600 transition duration-200">S&apos;inscrire</button>
                 </form>
             </div>
             {/* <p className="mt-4 text-sm text-gray-600/50">Pas encore de compte ? <a href="/register" className="text-[#DB80FF] hover:underline">S'inscrire</a></p> */}

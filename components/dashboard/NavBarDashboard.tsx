@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { AnimatedCircularProgressBar } from "@/components/magicui/animated-circular-progress-bar";
 

@@ -94,8 +94,6 @@ export default function Quiz() {
       if (!response.ok) {
         throw new Error("Failed to submit quiz");
       }
-
-      const data = await response.json();
       window.location.href = `/dashboard`;
     } catch (error) {
       console.error("Error submitting quiz:", error);
@@ -118,7 +116,7 @@ export default function Quiz() {
           !session ? (
             <article className="flex flex-col justify-center items-center tracking-widest font-sans font-light mt-12 md:mt-20 ">
               <h1 className="mb-10 font-bold">Débloquer votre checklist personnalisée !</h1>
-              <RegisterModal answers={answers}/>
+              <RegisterModal />
             </article>
           ) : 
           <article className="flex flex-col justify-center items-center tracking-widest font-sans font-light mt-12 md:mt-20 ">

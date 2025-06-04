@@ -7,7 +7,6 @@ import { useState } from "react";
 export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -30,7 +29,7 @@ export default function Register() {
             if (response.ok) {
             window.location.href = "/";
             } else {
-            setError(true);
+            console.error("Registration failed");
             }
         } catch (error) {
             console.error("Error during login:", error);

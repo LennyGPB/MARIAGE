@@ -7,7 +7,6 @@ import { useState } from "react";
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -30,7 +29,6 @@ export default function Login() {
             window.location.href = "/";
             } else {
             console.error("Login failed");
-            setError(true);
             }
         } catch (error) {
             console.error("Error during login:", error);

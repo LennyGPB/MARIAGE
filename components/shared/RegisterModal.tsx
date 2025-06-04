@@ -1,7 +1,6 @@
 "use client";
 
 import { BorderBeam } from "@/components/magicui/border-beam";
-import Navbar from "@/components/shared/Navbar";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 
@@ -22,7 +21,7 @@ type QuizAnswers = {
   organisateurs?: string
 }
 
-export default function RegisterModal({ answers }: Props) {
+export default function RegisterModal() {
 
     const [formData, setFormData] = useState({
         email: "",

@@ -1,26 +1,24 @@
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { authConfig } from "@/lib/auth.config";
 
-export async function PATCH(req: Request, context: { params: { id: string } }) {
-  const { params } = context;
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const session = await getServerSession(authConfig);
-  
+
   if (!session || !session.user?.id) {
     return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
   }
 
   if (!params?.id) {
-  return NextResponse.json({ error: "ID manquant" }, { status: 400 });
-}
+    return NextResponse.json({ error: "ID manquant" }, { status: 400 });
+  }
 
   const taskId = params.id;
   const body = await req.json();
-
-  if (!taskId) {
-    return NextResponse.json({ error: "ID manquant" }, { status: 400 });
-  }
 
   try {
     const existing = await prisma.checklistItem.findUnique({

@@ -34,7 +34,7 @@ export default function Pricing() {
 
                     <div className="flex justify-center mt-7">
                         <button className="uppercase bg-pinkk text-white font-bold px-5 py-2 rounded-2xl hover:scale-105 transition duration-300 ease-in-out">
-                            Obtenir l'offre Premium
+                            Obtenir l&apos;offre Premium
                         </button>
                     </div>
                 </article>

@@ -4,19 +4,6 @@ import { BorderBeam } from "@/components/magicui/border-beam";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 
-
-type QuizAnswers = {
-  weddingDate?: string
-  weddingType?: string
-  locationKnown?: string
-  guestCount?: string
-  budget?: string
-  theme?: string
-  urgent?: string[]
-  prestataires?: string[]
-  organisateurs?: string
-}
-
 export default function RegisterModal() {
 
     const [formData, setFormData] = useState({

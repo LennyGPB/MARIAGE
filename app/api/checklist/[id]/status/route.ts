@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { authConfig } from "@/lib/auth.config";
 
-export async function PATCH(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(req: Request, { params }: { params: any }) {
   const session = await getServerSession(authConfig);
+
   if (!session || !session.user?.id) {
     return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
   }
@@ -28,7 +29,10 @@ export async function PATCH(
     });
 
     if (!task || task.userId !== session.user.id) {
-      return NextResponse.json({ error: "Tâche introuvable ou interdite" }, { status: 404 });
+      return NextResponse.json(
+        { error: "Tâche introuvable ou interdite" },
+        { status: 404 }
+      );
     }
 
     const updated = await prisma.checklistItem.update({

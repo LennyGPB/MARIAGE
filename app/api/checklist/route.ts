@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
@@ -28,25 +30,41 @@ export async function GET() {
   }
 }
 
-export async function DELETE() {
+export async function DELETE(req: Request, { params }: { params: any }) {
   const session = await getServerSession(authConfig);
 
   if (!session || !session.user?.id) {
     return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
   }
 
+  const taskId = params.id;
+
   try {
-    const deleted = await prisma.checklistItem.deleteMany({
-      where: {
-        userId: session.user.id,
-      },
+    const task = await prisma.checklistItem.findUnique({
+      where: { id: taskId },
     });
 
-    return NextResponse.json({
-      message: `${deleted.count} tâche(s) supprimée(s)`,
+    if (!task || task.userId !== session.user.id) {
+      return NextResponse.json(
+        { error: "Tâche introuvable ou interdite" },
+        { status: 404 }
+      );
+    }
+
+    if (!task.isCustom) {
+      return NextResponse.json(
+        { error: "Impossible de supprimer une tâche IA" },
+        { status: 400 }
+      );
+    }
+
+    await prisma.checklistItem.delete({
+      where: { id: taskId },
     });
+
+    return NextResponse.json({ message: "Tâche supprimée avec succès" });
   } catch (error) {
-    console.error("Erreur DELETE /checklist :", error);
+    console.error("Erreur DELETE /checklist/:id :", error);
     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
   }
 }

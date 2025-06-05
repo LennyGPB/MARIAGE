@@ -1,12 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { authConfig } from "@/lib/auth.config";
 
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(req: NextRequest, { params }: { params: any }) {
   const session = await getServerSession(authConfig);
 
   if (!session || !session.user?.id) {
@@ -26,7 +25,10 @@ export async function PATCH(
     });
 
     if (!existing || existing.userId !== session.user.id) {
-      return NextResponse.json({ error: "Tâche introuvable ou interdite" }, { status: 404 });
+      return NextResponse.json(
+        { error: "Tâche introuvable ou interdite" },
+        { status: 404 }
+      );
     }
 
     const updated = await prisma.checklistItem.update({
@@ -36,7 +38,9 @@ export async function PATCH(
         description: body.description ?? existing.description,
         category: body.category ?? existing.category,
         priority: body.priority ?? existing.priority,
-        idealDate: body.idealDate ? new Date(body.idealDate) : existing.idealDate,
+        idealDate: body.idealDate
+          ? new Date(body.idealDate)
+          : existing.idealDate,
         status: body.status ?? existing.status,
       },
     });
@@ -48,10 +52,7 @@ export async function PATCH(
   }
 }
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(req: Request, { params }: { params: any }) {
   const session = await getServerSession(authConfig);
 
   if (!session || !session.user?.id) {
@@ -66,11 +67,17 @@ export async function DELETE(
     });
 
     if (!task || task.userId !== session.user.id) {
-      return NextResponse.json({ error: "Tâche introuvable ou interdite" }, { status: 404 });
+      return NextResponse.json(
+        { error: "Tâche introuvable ou interdite" },
+        { status: 404 }
+      );
     }
 
     if (!task.isCustom) {
-      return NextResponse.json({ error: "Impossible de supprimer une tâche IA" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Impossible de supprimer une tâche IA" },
+        { status: 400 }
+      );
     }
 
     await prisma.checklistItem.delete({

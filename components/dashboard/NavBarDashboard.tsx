@@ -53,6 +53,7 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
                     <option className="text-black" value="Prestataires">Prestataires</option>
                     <option className="text-black" value="Musique">Musique</option>
                     <option className="text-black" value="Logistique">Logistique</option>
+                    <option className="text-black" value="Photographe">Photographe</option>
                     <option className="text-black" value="Jour J">Jour J</option>
                 </select>
             </div>

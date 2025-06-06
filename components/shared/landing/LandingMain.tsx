@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function LandingMain() {
     return (
         <>
-        <article className="z-50 font-sans flex flex-col justify-center items-center tracking-wide mt-7 md:mt-20">
+        <article id="landing" className="z-50 font-sans flex flex-col justify-center items-center tracking-wide mt-7 md:mt-20">
             <SparklesText className="hidden md:block  w-[1000px] text-center text-5xl font-light leading-[67px] mt-10 tracking-wide">Organisez <span className="text-[#DB80FF] font-bold">votre mariage</span> sans stress, avec une checklist intelligente.</SparklesText>
             <SparklesText className="md:hidden w-[400px] text-center text-3xl font-light leading-[50px] mt-10 tracking-wide">Organisez <span className="text-[#DB80FF] font-bold">votre mariage</span> sans stress, avec une checklist intelligente.</SparklesText>
             <p className="text-black/50 text-md md:text-lg text-center w-[350px] md:w-[795px] mt-5 font-light">Créez un plan clair, personnalisé et évolutif selon votre date, votre style, et vos envies. Enfin un outil qui <span className="font-medium">pense comme vous</span>.</p>

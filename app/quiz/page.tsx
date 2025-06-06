@@ -91,7 +91,7 @@ export default function Quiz() {
       try {
         const parsedAnswers = JSON.parse(storedAnswers);
 
-        const response = await fetch("/api/onboarding", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/onboarding`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -18,7 +18,7 @@ export default function Register() {
             formData.append("email", email);
             formData.append("password", password);
 
-            const response = await fetch("http://localhost:3000/api/register", {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

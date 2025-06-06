@@ -60,7 +60,7 @@ export default function Quiz() {
 
     const fetchOnBoarding = async () => { 
       try {
-        const response = await fetch("http://localhost:3000/api/onboarding", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/onboarding`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

@@ -23,7 +23,7 @@ export default function AddTask({ onBack }: Props) {
         e.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:3000/api/checklist/customTask`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/checklist/customTask`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

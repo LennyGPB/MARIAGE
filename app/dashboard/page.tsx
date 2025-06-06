@@ -35,7 +35,7 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-            const response = await fetch("http://localhost:3000/api/checklist");
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/checklist`);
 
             if (!response.ok) {
                 throw new Error("Network response was not ok");

@@ -11,7 +11,7 @@ export default function EditDate({ onBack }: Props) {
         e.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:3000/api/checklist/editDate`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/checklist/editDate`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"

@@ -33,7 +33,7 @@ export default function EditTask({ task, onBack }: Props) {
         e.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:3000/api/checklist/${task.id}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/checklist/${task.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"

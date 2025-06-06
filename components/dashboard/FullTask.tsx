@@ -34,7 +34,7 @@ export default function FullTask({ task, onBack, onEdit  }: Props) {
         setIsChecked(!isChecked); // MAJ optimiste
 
         try {
-            const res = await fetch(`http://localhost:3000/api/checklist/${task.id}/status`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/checklist/${task.id}/status`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -55,7 +55,7 @@ export default function FullTask({ task, onBack, onEdit  }: Props) {
     const handleMask = async () => {
         setIsMaskLoading(true);
         try {
-            const res = await fetch(`http://localhost:3000/api/checklist/${task.id}/hide`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/checklist/${task.id}/hide`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"

@@ -18,7 +18,7 @@ export default function RegisterModal() {
 
         try {
             // 1. Enregistrement de l'utilisateur
-            const response = await fetch("http://localhost:3000/api/register", {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -45,10 +45,10 @@ export default function RegisterModal() {
             const parsedAnswers = JSON.parse(storedAnswers);
 
             // 4. Envoi à /api/onboarding
-            await fetch("/api/onboarding", {
+            await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/onboarding`, {
                 method: "POST",
                 headers: {
-                "Content-Type": "application/json",
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify(parsedAnswers),
             });

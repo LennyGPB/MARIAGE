@@ -53,7 +53,7 @@ export default function RegisterModal() {
                 body: JSON.stringify(parsedAnswers),
             });
 
-            // 5. Nettoyage du localStorage
+            // 5. Nettoyage du localStoragee
             localStorage.removeItem("quizAnswers");
             } else {
             const errorData = await response.json();

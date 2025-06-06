@@ -82,24 +82,24 @@ export default function Quiz() {
   }, [])
 
 
-   const handleSubmit = async () => {
-    //setIsLoading(true);
-    try {
-      const response = await fetch("http://localhost:3000/api/checklist/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(answers),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to submit quiz");
-      }
-      window.location.href = `/dashboard`;
-    } catch (error) {
-      console.error("Error submitting quiz:", error);
-    }
-   }
+  //  const handleSubmit = async () => {
+  //   //setIsLoading(true);
+  //   try {
+  //     const response = await fetch("http://localhost:3000/api/checklist/generate", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(answers),
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error("Failed to submit quiz");
+  //     }
+  //     window.location.href = `/dashboard`;
+  //   } catch (error) {
+  //     console.error("Error submitting quiz:", error);
+  //   }
+  //  }
    
     return (
         <>

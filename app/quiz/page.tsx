@@ -13,6 +13,7 @@ import Urgent from "@/components/shared/quiz/urgent";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import RegisterModal from "@/components/shared/RegisterModal";
+import Pricing from "@/components/shared/landing/pricing";
 
 type QuizAnswers = {
   weddingDate?: string
@@ -115,14 +116,15 @@ export default function Quiz() {
         {step === 9 && (
           !session ? (
             <article className="flex flex-col justify-center items-center tracking-widest font-sans font-light mt-12 md:mt-20 ">
-              <h1 className="mb-10 font-bold">Débloquer votre checklist personnalisée !</h1>
+              <h1 className="text-xl mb-10 font-light">Débloquer votre <span className="font-medium">checklist personnalisée !</span></h1>
               <RegisterModal />
             </article>
           ) : 
-          <article className="flex flex-col justify-center items-center tracking-widest font-sans font-light mt-12 md:mt-20 ">
-              <h1 className="mb-10 font-bold">PAYE MAINTENANT</h1>
-              <button onClick={handleSubmit}>Débloquer</button>
-          </article>
+          // <article className="flex flex-col justify-center items-center tracking-widest font-sans font-light mt-12 md:mt-20 ">
+          //     <h1 className="mb-10 font-bold">PAYE MAINTENANT</h1>
+          //     <button onClick={handleSubmit}>Débloquer</button>
+          // </article>
+          <Pricing />
         )}
         </>
     )

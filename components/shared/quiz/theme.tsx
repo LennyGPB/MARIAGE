@@ -17,6 +17,11 @@ export default function Theme({ onAnswer,onNext }: Props) {
     onNext?.()
   }
 
+    const is = (value: string) => selected.includes(value)
+    const base = 'border border-black/50 px-10 rounded-lg py-2 transition'
+    const active = 'bg-pinkk text-white font-semibold'
+    const inactive = 'bg-white text-black'
+
 
     return (
         <>
@@ -26,19 +31,19 @@ export default function Theme({ onAnswer,onNext }: Props) {
             </div>
 
             <div className="flex flex-col sm:flex-row justify-center items center gap-5 text-sm text-black mt-7 mb-7 sm:mb-0">
-                <button onClick={() => setSelected('Bohème')} className='border border-black/50 px-10 rounded-lg py-2'>Bohème</button>
-                <button onClick={() => setSelected('Chic')} className='border border-black/50 px-10 rounded-lg py-2'>Chic / Élégant</button>
-                <button onClick={() => setSelected('Minimaliste')} className='border border-black/50 px-10 rounded-lg py-2'>Minimaliste</button>
-                <button onClick={() => setSelected('Romantique')} className='border border-black/50 px-10 rounded-lg py-2'>Romantique</button>
-                <button onClick={() => setSelected('Oriental')} className='sm:hidden border border-black/50 px-10 rounded-lg py-2'>Oriental</button>
-                <button onClick={() => setSelected('Vintage')} className='sm:hidden border border-black/50 px-10 rounded-lg py-2'>Vintage</button>
-                <button onClick={() => setSelected('Bord de mer')} className='sm:hidden border border-black/50 px-10 rounded-lg py-2'>Bord de mer</button>
-                <input type="text" placeholder="Autre..." className="border border-black/50 px-5 rounded-lg py-2 focus:outline-none"/>            
+                <button onClick={() => setSelected('Bohème')} className={`${base} ${is('Bohème') ? active : inactive}`}>Bohème</button>
+                <button onClick={() => setSelected('Chic')} className={`${base} ${is('Chic') ? active : inactive}`}>Chic / Élégant</button>
+                <button onClick={() => setSelected('Minimaliste')} className={`${base} ${is('Minimaliste') ? active : inactive}`}>Minimaliste</button>
+                <button onClick={() => setSelected('Romantique')} className={`${base} ${is('Romantique') ? active : inactive}`}>Romantique</button>
+                <button onClick={() => setSelected('Oriental')} className={`${base} ${is('Oriental') ? active : inactive} sm:hidden`}>Oriental</button>
+                <button onClick={() => setSelected('Vintage')} className={`${base} ${is('Vintage') ? active : inactive} sm:hidden`}>Vintage</button>
+                <button onClick={() => setSelected('Bord de mer')} className={`${base} ${is('Bord de mer') ? active : inactive} sm:hidden`}>Bord de mer</button>
+                <input type="text" placeholder="Autre..." className={`${base} ${is('Autres') ? active : inactive} sm:hidden`}/>            
                 </div>
             <div className="hidden sm:flex justify-center items center gap-5 text-sm text-black mt-5 mb-7">
-                <button onClick={() => setSelected('Oriental')} className='border border-black/50 px-10 rounded-lg py-2'>Oriental</button>
-                <button onClick={() => setSelected('Vintage')} className='border border-black/50 px-10 rounded-lg py-2'>Vintage</button>
-                <button onClick={() => setSelected('Bord de mer')} className='border border-black/50 px-10 rounded-lg py-2'>Bord de mer</button>
+                <button onClick={() => setSelected('Oriental')} className={`${base} ${is('Oriental') ? active : inactive}`}>Oriental</button>
+                <button onClick={() => setSelected('Vintage')} className={`${base} ${is('Vintage') ? active : inactive}`}>Vintage</button>
+                <button onClick={() => setSelected('Bord de mer')} className={`${base} ${is('Bord de mer') ? active : inactive}`}>Bord de mer</button>
                 <input type="text" placeholder="Autre..." className="border border-black/50 px-5 rounded-lg py-2 focus:outline-none"/>
             </div>
             <BtnQuiz onNext={handleContinue}/>

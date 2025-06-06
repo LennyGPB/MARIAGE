@@ -19,6 +19,11 @@ export default function Budget({ onAnswer, onNext }: Props) {
     onNext?.()
   }
 
+    const is = (value: string) => selected.includes(value)
+    const base = 'border border-black/50 px-10 rounded-lg py-2 transition'
+    const active = 'bg-pinkk text-white font-semibold'
+    const inactive = 'bg-white text-black'
+
     return (
         <>
         <article className="flex flex-col justify-center items-center tracking-widest font-sans font-light mt-16 md:mt-24">
@@ -27,10 +32,10 @@ export default function Budget({ onAnswer, onNext }: Props) {
             </div>
 
             <div className="flex flex-col sm:flex-row justify-center items center gap-5 text-sm text-black mt-7 mb-7">
-                <button onClick={() => setSelected('- 5000€')} className='border border-black/50 px-10 rounded-lg py-2'>moins de 5000€</button>
-                <button onClick={() => setSelected('5000€ - 10 000€')} className='border border-black/50 px-10 rounded-lg py-2'>5 000 - 10 000€</button>
-                <button onClick={() => setSelected('10 000€ - 20 000€')} className='border border-black/50 px-10 rounded-lg py-2'>10 000 - 20 000€</button>
-                <button onClick={() => setSelected('+40 000€')} className='border border-black/50 px-10 rounded-lg py-2'>+40 000€</button>
+                <button onClick={() => setSelected('- 5000€')} className={`${base} ${is('- 5000€') ? active : inactive}`}>moins de 5000€</button>
+                <button onClick={() => setSelected('5000€ - 10 000€')} className={`${base} ${is('5000€ - 10 000€') ? active : inactive}`}>5 000 - 10 000€</button>
+                <button onClick={() => setSelected('10 000€ - 20 000€')} className={`${base} ${is('10 000€ - 20 000€') ? active : inactive}`}>10 000 - 20 000€</button>
+                <button onClick={() => setSelected('+40 000€')} className={`${base} ${is('+40 000€') ? active : inactive}`}>+40 000€</button>
             </div>
             <BtnQuiz onNext={handleContinue}/>
         </article>

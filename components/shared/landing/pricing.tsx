@@ -1,10 +1,31 @@
+"use client";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 export default function Pricing() {
+    const { data: session } = useSession();
+
+    const handleCheckout = async () => {
+    const res = await fetch("http://localhost:3000/api/stripe/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: session?.user?.email }),
+    });
+
+    const data = await res.json();
+    if (data.url) {
+        window.location.href = data.url;
+    } else {
+        alert("Une erreur est survenue lors de la création de la session de paiement.");
+    }
+    };
+
+
+
     return (
         <>
-        <article className="z-50 font-sans flex flex-col justify-center items-center tracking-wide mt-20 mb-20">
+        <article id="price" className="z-50 font-sans flex flex-col justify-center items-center tracking-wide mt-20 mb-20">
 
             <h2 className="tracking-widest font-light text-4xl">Tarif - <span className=" font-bold">Premium</span></h2>
             <p className="text-center text-black/50 text-md font-light mt-7 w-[350px] md:w-[1000px]">Accède à ta <span className="font-medium">checklist intelligente</span> et <span className="font-medium">ultra-personnalisée</span> pour organiser ton mariage <span className="font-medium">sereinement.</span> <br />
@@ -33,7 +54,7 @@ export default function Pricing() {
                     </div>
 
                     <div className="flex justify-center mt-7">
-                        <button className="uppercase bg-pinkk text-white font-bold px-5 py-2 rounded-2xl hover:scale-105 transition duration-300 ease-in-out">
+                        <button onClick={handleCheckout} className="uppercase bg-pinkk text-white font-bold px-5 py-2 rounded-2xl hover:scale-105 transition duration-300 ease-in-out">
                             Obtenir l&apos;offre Premium
                         </button>
                     </div>

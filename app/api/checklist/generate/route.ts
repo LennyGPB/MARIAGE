@@ -68,7 +68,6 @@ export async function POST() {
   Utilise un ton bienveillant, professionnel, et pertinent.
   `
 
-
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo", 
@@ -110,6 +109,11 @@ export async function POST() {
         });
       })
     );
+
+    await prisma.user.update({
+      where: { id: session.user.id },
+      data: { hasChecklist: true },
+    });
 
     return NextResponse.json({ tasks });
   } catch (error) {

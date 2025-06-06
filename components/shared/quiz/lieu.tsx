@@ -17,6 +17,11 @@ export default function Lieu({ onAnswer,onNext }: Props) {
     onNext?.()
   }
 
+    const is = (value: string) => selected.includes(value)
+    const base = 'border border-black/50 px-10 rounded-lg py-2 transition'
+    const active = 'bg-pinkk text-white font-semibold'
+    const inactive = 'bg-white text-black'
+
     return (
         <>
         <article className="flex flex-col justify-center items-center tracking-widest font-sans font-light mt-12 md:mt-20">
@@ -25,9 +30,9 @@ export default function Lieu({ onAnswer,onNext }: Props) {
             </div>
 
             <div className="flex  justify-center items center gap-5 text-sm text-black mt-7 mb-7">
-                <button onClick={() => setSelected('Oui')} className='border border-black/50 px-5 sm:px-10 rounded-lg py-2'>Oui</button>
-                <button onClick={() => setSelected('Non')} className='border border-black/50 px-5 sm:px-10 rounded-lg py-2'>Non</button>
-                <button onClick={() => setSelected('En cours')} className='border border-black/50 px-5 sm:px-10 rounded-lg py-2'>En cours</button>
+                <button onClick={() => setSelected('Oui')} className={`${base} ${is('Oui') ? active : inactive}`}>Oui</button>
+                <button onClick={() => setSelected('Non')} className={`${base} ${is('Non') ? active : inactive}`}>Non</button>
+                <button onClick={() => setSelected('En cours')} className={`${base} ${is('En cours') ? active : inactive}`}>En cours</button>
             </div>
             <BtnQuiz onNext={handleContinue}/>
         </article>

@@ -13,6 +13,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 export async function POST(req: Request) {
+  console.log("🔔 Webhook Stripe reçu !");
   const sig = req.headers.get("stripe-signature")!;
 
   const rawBody = await req.arrayBuffer();

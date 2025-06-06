@@ -18,12 +18,12 @@ model User {
   name           String?
   email          String   @unique
   emailVerified  DateTime?
-  password       String?  // utilisé uniquement pour les credentials
+  password       String?  
   image          String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
   hasChecklist   Boolean  @default(false)
-  premium       Boolean  @default(false)
+  premium        Boolean  @default(false)
   onboarding Onboarding?
 
   checklistItems ChecklistItem[]

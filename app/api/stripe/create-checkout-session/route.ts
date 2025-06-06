@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cancel`,
       metadata: {
-        email: body.userId || "", // si tu passes l'email pour t’y retrouver
+        userId: body.userId || "", // si tu passes l'email pour t’y retrouver
       },
     });
 

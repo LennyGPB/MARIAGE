@@ -81,6 +81,38 @@ export default function Quiz() {
     fetchOnBoarding();
   }, [])
 
+  useEffect(() => {
+    const sendOnboarding = async () => {
+      if (!session || step !== 9) return;
+
+      const storedAnswers = localStorage.getItem("quizAnswers");
+      if (!storedAnswers) return; 
+
+      try {
+        const parsedAnswers = JSON.parse(storedAnswers);
+
+        const response = await fetch("/api/onboarding", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(parsedAnswers),
+        });
+
+        if (!response.ok) {
+          throw new Error("Erreur lors de l'envoi de l'onboarding");
+        }
+
+        console.log("Onboarding envoyé avec succès !");
+        localStorage.removeItem("quizAnswers");
+      } catch (error) {
+        console.error("Erreur lors de l'envoi de l'onboarding :", error);
+      }
+    };
+
+    sendOnboarding();
+  }, [session, step]);
+
 
   //  const handleSubmit = async () => {
   //   //setIsLoading(true);
@@ -120,10 +152,6 @@ export default function Quiz() {
               <RegisterModal />
             </article>
           ) : 
-          // <article className="flex flex-col justify-center items-center tracking-widest font-sans font-light mt-12 md:mt-20 ">
-          //     <h1 className="mb-10 font-bold">PAYE MAINTENANT</h1>
-          //     <button onClick={handleSubmit}>Débloquer</button>
-          // </article>
           <Pricing />
         )}
         </>

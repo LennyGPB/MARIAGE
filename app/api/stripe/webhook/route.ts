@@ -37,7 +37,6 @@ export async function POST(req: Request) {
     const userId = session.metadata?.userId;
 
     if (userId) {
-      // Mets à jour l'utilisateur en BDD
       await prisma.user.update({
         where: { id: userId },
         data: { premium: true },

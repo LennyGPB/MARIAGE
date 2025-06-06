@@ -7,18 +7,18 @@ export default function Pricing() {
     const { data: session } = useSession();
 
     const handleCheckout = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/create-checkout-session`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: session?.user?.id }),
-    });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/create-checkout-session`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userId: session?.user?.id }),
+        });
 
-    const data = await res.json();
-    if (data.url) {
-        window.location.href = data.url;
-    } else {
-        alert("Une erreur est survenue lors de la création de la session de paiement.");
-    }
+        const data = await res.json();
+        if (data.url) {
+            window.location.href = data.url;
+        } else {
+            alert("Une erreur est survenue lors de la création de la session de paiement.");
+        }
     };
 
 

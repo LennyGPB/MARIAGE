@@ -14,10 +14,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(req: Request) {
   console.log("🔔 Webhook Stripe reçu !");
+  console.log("Méthode reçue :", req.method);
+  console.log("Headers reçus :", req.headers);
+
   const sig = req.headers.get("stripe-signature")!;
 
   const rawBody = await req.arrayBuffer();
   const buf = Buffer.from(rawBody);
+  console.log("Body brut reçu :", buf.toString());
+
 
   let event: Stripe.Event;
 

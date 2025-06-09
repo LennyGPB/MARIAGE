@@ -16,6 +16,6 @@ export const strictLimiter = new Ratelimit({
 // Pour les routes BDD simples
 export const softLimiter = new Ratelimit({
   redis,
-  limiter: Ratelimit.slidingWindow(60, "1 m"), // 20 requêtes/min
+  limiter: Ratelimit.slidingWindow(500, "1 m"), 
   analytics: true,
 });

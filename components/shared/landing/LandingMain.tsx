@@ -2,7 +2,6 @@
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import { SparklesText } from "@/components/magicui/sparkles-text";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 type Props = {
   user: {

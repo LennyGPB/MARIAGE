@@ -112,7 +112,7 @@ export default function Dashboard() {
            {selectedTask && !isEditing && !addTask && !editDateOpen && !questionOpen && (
                 <FullTask
                     task={selectedTask}
-                    onBack={() => {setSelectedTask(null), refreshTasks()}}
+                    onBack={() => {setSelectedTask(null); refreshTasks()}}
                     onEdit={() => setIsEditing(true)}
                     onQuestion={() => setQuestionOpen(true)}
                 />
@@ -134,8 +134,8 @@ export default function Dashboard() {
                 </div>
             )}
 
-           {!selectedTask && addTask && !questionOpen && <AddTask onBack={() => {setAddTask(false), refreshTasks()}} />}
-           {!selectedTask && editDateOpen && !questionOpen && <EditDate onBack={() => {setEditDateOpen(false), refreshTasks()}} />}
+           {!selectedTask && addTask && !questionOpen && <AddTask onBack={() => {setAddTask(false); refreshTasks()}} />}
+           {!selectedTask && editDateOpen && !questionOpen && <EditDate onBack={() => {setEditDateOpen(false); refreshTasks()}} />}
 
            {!isEditing && !editDateOpen && !addTask && questionOpen && selectedTask && <AiQuestion task={selectedTask} onBack={() => {setQuestionOpen(false)}}  />}
 

@@ -124,7 +124,7 @@ export default function FullTask({ task, onBack, onEdit, onQuestion }: Props) {
                         <button onClick={onEdit} className="text-xs text-black border border-black px-5 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105 hover:text-white hover:bg-black">Modifier cette tâche</button>
                         </div>
                         <div className="flex gap-2">
-                        <button onClick={onQuestion} className="text-xs text-white border border-pinkk bg-pinkk px-5 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105">Poser une question à l'IA</button>
+                        <button onClick={onQuestion} className="text-xs text-white border border-pinkk bg-pinkk px-5 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105">Poser une question à l&lsquo;IA</button>
                         <SmartToyIcon className="transition duration-300 ease-in-out hover:scale-105 text-pinkk mr-2 " />
                         </div>
                     </div>
@@ -168,7 +168,7 @@ export default function FullTask({ task, onBack, onEdit, onQuestion }: Props) {
                         </div>
                         <div className="flex gap-2">
                             <button onClick={onEdit} className="text-[9px] text-black border border-black px-2 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105 hover:text-white hover:bg-black">Modifier cette tâche</button>
-                            <button onClick={onQuestion} className="text-[9px] text-white border border-pinkk bg-pinkk px-2 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105">Poser une question à l'IA</button>
+                            <button onClick={onQuestion} className="text-[9px] text-white border border-pinkk bg-pinkk px-2 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105">Poser une question à l&lsquo;IA</button>
                         </div>
                     </div>
                 </div>

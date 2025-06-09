@@ -1,7 +1,6 @@
 "use client";
 
 import { formatFrenchDate } from "@/lib/date";
-import { useState } from "react";
 
 type TaskType = {
   id: string | number;

@@ -4,7 +4,6 @@ import Navbar from "@/components/shared/Navbar";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 import { authConfig } from "@/lib/auth.config";
-import { Marquee } from "@/components/magicui/marquee";
 import AccordionComponent from "@/components/shared/landing/Accordion";
 import Velocity from "@/components/shared/landing/Velocity";
 

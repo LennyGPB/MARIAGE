@@ -17,7 +17,7 @@ export async function PATCH(req: Request, { params }: { params: any }) {
   const { status } = await req.json();
 
   // ✅ Vérifie que le statut est valide
-  const validStatuses = ["todo", "in_progress", "done"];
+  const validStatuses = ["À faire", "En cours", "Terminée"];
   if (!validStatuses.includes(status)) {
     return NextResponse.json({ error: "Statut invalide" }, { status: 400 });
   }

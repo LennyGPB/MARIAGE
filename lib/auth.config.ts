@@ -6,18 +6,6 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "../lib/prisma";
 import bcrypt from "bcrypt";
 
-declare module "next-auth" {
-  interface Session {
-    user: {
-      id: string;
-      name?: string | null;
-      email?: string | null;
-      image?: string | null;
-      haschecklist?: boolean; 
-    };
-  }
-}
-
 export const authConfig: AuthOptions = {
   adapter: PrismaAdapter(prisma),
 
@@ -72,11 +60,19 @@ export const authConfig: AuthOptions = {
       if (token?.sub) {
         session.user.id = token.sub;
       }
+      if (token?.premium !== undefined) {
+        session.user.premium = token.premium as boolean;
+      }
+      if (token?.haschecklist !== undefined) {
+        session.user.haschecklist = token.haschecklist as boolean;
+      }
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.premium = user.premium;
+        token.haschecklist = user.haschecklist;
       }
       return token;
     },

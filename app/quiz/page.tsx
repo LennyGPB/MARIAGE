@@ -59,6 +59,8 @@ export default function Quiz() {
     }
 
     const fetchOnBoarding = async () => { 
+      if (!session) { return; }
+      
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/onboarding`, {
           method: "GET",
@@ -82,6 +84,7 @@ export default function Quiz() {
   }, [])
 
   useEffect(() => {
+    
     const sendOnboarding = async () => {
       if (!session || step !== 9) return;
 

@@ -2,11 +2,29 @@
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import { useState } from 'react';
 
-export default function Pricing() {
+type Props = {
+  user?: {
+    id: string;
+    name: string | null;
+    email: string;
+    image: string | null;
+    premium: boolean;
+    hasChecklist: boolean;
+  } | null;
+};
+
+export default function Pricing({user} : Props) {
     const { data: session } = useSession();
+    const [textPremium, setTextPremium] = useState("Obtenir l'offre Premium");
 
     const handleCheckout = async () => {
+        if (user?.premium) {
+            setTextPremium("Vous êtes déjà Premium !");
+            return;
+        }
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/create-checkout-session`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -21,10 +39,9 @@ export default function Pricing() {
         }
     };
 
-
     return (
         <>
-        <article id="price" className="z-50 font-sans flex flex-col justify-center items-center tracking-wide mt-20 mb-20">
+        <article id="price" className="z-50 font-sans flex flex-col justify-center items-center tracking-wide mt-24 mb-20">
 
             <h2 className="tracking-widest font-light text-4xl">Tarif - <span className=" font-bold">Premium</span></h2>
             <p className="text-center text-black/50 text-md font-light mt-7 w-[350px] md:w-[1000px]">Accède à ta <span className="font-medium">checklist intelligente</span> et <span className="font-medium">ultra-personnalisée</span> pour organiser ton mariage <span className="font-medium">sereinement.</span> <br />
@@ -54,7 +71,7 @@ export default function Pricing() {
 
                     <div className="flex justify-center mt-7">
                         <button onClick={handleCheckout} className="uppercase bg-pinkk text-white font-bold px-5 py-2 rounded-2xl hover:scale-105 transition duration-300 ease-in-out">
-                            Obtenir l&apos;offre Premium
+                            {textPremium}
                         </button>
                     </div>
                 </article>

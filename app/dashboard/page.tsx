@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import EditTask from "@/components/dashboard/EditTask";
 import AddTask from "@/components/dashboard/AddTask";
 import EditDate from "@/components/dashboard/EditDate";
+import AiQuestion from "@/components/dashboard/AiQuestion";
 
 type TaskType = {
   id: string | number;
@@ -16,7 +17,7 @@ type TaskType = {
   category: string;
   idealDate: string; // Date ISO
   offset: number; 
-  status: "todo" | "in_progress" | "done"
+  status: "À faire" | "En cours" | "Terminée";
   priority: string; 
   isCustom: boolean;
   visible: boolean;
@@ -28,9 +29,21 @@ export default function Dashboard() {
     const [isEditing, setIsEditing] = useState(false);
     const [addTask, setAddTask] = useState(false);
     const [editDateOpen, setEditDateOpen] = useState(false);
+    const [questionOpen, setQuestionOpen] = useState(false);
     const [filterStatus, setFilterStatus] = useState<string>("");
     const [filterVisible, setFilterVisible] = useState<"true" | "false" | "">("");
     const [filterCategory, setFilterCategory] = useState<string>("");
+
+    const refreshTasks = async () => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/checklist`);
+            if (!response.ok) throw new Error("Erreur lors du rafraîchissement des tâches");
+            const data = await response.json();
+            setTaches(data.tasks);
+        } catch (error) {
+            console.error("Erreur lors du rafraîchissement des tâches:", error);
+        }
+    };
 
     useEffect(() => {
         const fetchTasks = async () => {
@@ -82,28 +95,30 @@ export default function Dashboard() {
             onStatusChange={(status) => setFilterStatus(status)}
             onVisibleChange={(visible) => setFilterVisible(visible as "true" | "false" | "")}
             onCategoryChange={(category) => setFilterCategory(category)}
+            tasks={taches}
 
         />
             <GridPattern width={30} height={30} x={-1} y={-1} className={"opacity-40 [mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]"}/>
 
 
-        <section className="font-inter flex flex-col items-center mt-32">
+        <section className="font-inter flex flex-col items-center mt-8 md:mt-32">
             {/* <SparklesText className="font-sans text-xl font-medium tracking-[2px]">Bonjour Hîden - Mariage prévu le 12/10/2025</SparklesText> */}
             {/* <AnimatedCircularProgressBar max={100} value={30} min={0} gaugePrimaryColor="#DB80FF" gaugeSecondaryColor="#E5E7EB" className="mt-10 w-[50px] h-[50px] text-md"/> */}
 
-            {selectedTask && isEditing && !addTask && !editDateOpen && (
+            {selectedTask && isEditing && !addTask && !editDateOpen && !questionOpen && (
                 <EditTask task={selectedTask} onBack={() => setIsEditing(false)} />
             )}
 
-           {selectedTask && !isEditing && !addTask && !editDateOpen && (
+           {selectedTask && !isEditing && !addTask && !editDateOpen && !questionOpen && (
                 <FullTask
                     task={selectedTask}
-                    onBack={() => setSelectedTask(null)}
+                    onBack={() => {setSelectedTask(null), refreshTasks()}}
                     onEdit={() => setIsEditing(true)}
+                    onQuestion={() => setQuestionOpen(true)}
                 />
             )}
 
-            {!selectedTask && !addTask && !editDateOpen && (
+            {!selectedTask && !addTask && !editDateOpen && !questionOpen && (
                 <div className="flex flex-col gap-7 md:gap-4 mb-10">
                     {filteredTasks.map(task => (
                         <Task
@@ -113,13 +128,16 @@ export default function Dashboard() {
                             setSelectedTask(task)
                             setIsEditing(false)
                         }}
+                        onRefresh={refreshTasks}
                         />
                     ))}
                 </div>
             )}
 
-           {!selectedTask && addTask && <AddTask onBack={() => setAddTask(false)} />}
-           {!selectedTask && editDateOpen && <EditDate onBack={() => setEditDateOpen(false)} />}
+           {!selectedTask && addTask && !questionOpen && <AddTask onBack={() => {setAddTask(false), refreshTasks()}} />}
+           {!selectedTask && editDateOpen && !questionOpen && <EditDate onBack={() => {setEditDateOpen(false), refreshTasks()}} />}
+
+           {!isEditing && !editDateOpen && !addTask && questionOpen && selectedTask && <AiQuestion task={selectedTask} onBack={() => {setQuestionOpen(false)}}  />}
 
         </section>
 

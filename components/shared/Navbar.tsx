@@ -1,16 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-export default function Navbar() {
+type Props = {
+  user?: {
+    id: string;
+    name: string | null;
+    email: string;
+    image: string | null;
+    premium: boolean;
+    hasChecklist: boolean;
+  } | null;
+};
+
+export default function Navbar({user} : Props) {
       const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
       const [isOpen, setIsOpen] = useState(false);
       const { data: session } = useSession();
 
-      const toggleMenu = () => {
+    const toggleMenu = () => {
         setIsOpen((prev) => !prev);
     };
 
@@ -22,8 +33,8 @@ export default function Navbar() {
                 <div className="flex justify-center items-center lg:space-x-20 ml-10 text-black/70 tracking-[2px]">                    
                     <Link href="/" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Accueil</Link>
                     <Link href="/#price" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Prix</Link>
-                    <Link href="#" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Support</Link>
-                    <Link href={session?.user?.haschecklist ? "/dashboard" : "/quiz"} className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">OnBoarding</Link>
+                    <Link href="/support" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Support</Link>
+                    <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"} className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Ma checklist</Link>
                 </div>
                {!session && 
                 <Link href="/login" className="font-sans bg-[#DB80FF] text-white px-5 py-1 rounded-lg font-bold uppercase hover:scale-105 transition duration-300 ease-in-out">Se connecter</Link>
@@ -36,8 +47,7 @@ export default function Navbar() {
                     {isOpen && (
                     <div aria-orientation="vertical" aria-labelledby="menu-button" className="absolute right-12 top-16 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden" role="menu">
                         <div className="py-1" role="none">
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:text-black" role="menuitem"  id="menu-item-0">Paramètres</a>
-                        <button onClick={() => signOut} className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:text-black" role="menuitem"  id="menu-item-3">Se déconnecter</button>
+                        <button onClick={() => signOut()} className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:text-black" role="menuitem"  id="menu-item-3">Se déconnecter</button>
                         </div>
                     </div>
                     )}
@@ -53,7 +63,7 @@ export default function Navbar() {
             <div className="flex justify-between items-center h-[52px] px-5 rounded-2xl ">
                 <p className="text-4xl font-hatch text-[#DB80FF] ">EW</p>
                
-                <button className="text-xs bg-[#DB80FF] text-white px-3 py-1 rounded-lg font-bold uppercase mr-2">Se connecter</button>
+                <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"} className="text-xs bg-[#DB80FF] text-white px-8 py-1 rounded-lg font-bold uppercase mr-3">OnBoarding</Link>
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-7" onClick={() => setIsMobileMenuOpen(true)} aria-expanded={isMobileMenuOpen}>
                     <title>Menu icon</title>
@@ -70,10 +80,10 @@ export default function Navbar() {
                   </div>
 
                 <div className="flex flex-col gap-3 text-black/80">
-                    <Link href="#">Accueil</Link>
-                    <Link href="#">OnBoarding</Link>
-                    <Link href="#">Prix</Link>
-                    <Link href="#">Support</Link>
+                    <Link href="/">Accueil</Link>
+                    <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"}>OnBoarding</Link>
+                    <Link href="#/#price">Prix</Link>
+                    <Link href="/support">Support</Link>
                 </div>
 
                 <button className="bg-[#DB80FF] text-white px-5 py-1 rounded-lg font-bold uppercase mt-5">Se connecter</button>

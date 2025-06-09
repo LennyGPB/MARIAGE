@@ -34,6 +34,9 @@ export default function QuizDate({ onAnswer, onNext }: Props) {
         className="mb-5"
         selected={selected}
         onSelect={setSelected}
+        startMonth={new Date(2025, 0)}
+        endMonth={new Date(2100, 0)}
+        hidden={{ before: new Date() }}
         classNames={{
           nav_button: 'hover:text-pink-700',
           selected: 'bg-pinkk rounded-full text-white font-bold',

@@ -100,7 +100,7 @@ model ChecklistItem {
   priority    String
   organisateurs   String
   prestataires String
-  status      String   @default("Todo")     
+  status      String   @default("À faire")     
   visible     Boolean  @default(true)       
   isCustom    Boolean  @default(false)     
 

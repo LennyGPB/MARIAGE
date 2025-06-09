@@ -38,35 +38,37 @@ export async function POST() {
   Tu es un expert en organisation de mariages.
 
   Voici les informations fournies par le couple :
-  - 📅 Date du mariage : ${onboarding.weddingDate}
-  - 🕊️ Type de cérémonie : ${onboarding.weddingType}
-  - 📍 Lieu déjà défini : ${onboarding.locationKnown}
-  - 👥 Nombre d'invités estimé : ${onboarding.guestCount}
-  - 💰 Budget global : ${onboarding.budget}
-  - 🎨 Thème souhaité : ${onboarding.theme || "non précisé"}
-  - ⚡ Priorité(s) : ${onboarding.urgent}
-  - 🧑‍🤝‍🧑 Prestataires déjà trouvés : ${onboarding.prestataires}
-  - 🧠 Degré d'organisation / accompagnement souhaité : ${onboarding.organisateurs}
+  - 📅 Date du mariage : \${onboarding.weddingDate}
+  - 🕊️ Type de cérémonie : \${onboarding.weddingType}
+  - 📍 Lieu déjà défini : \${onboarding.locationKnown}
+  - 👥 Nombre d'invités estimé : \${onboarding.guestCount}
+  - 💰 Budget global : \${onboarding.budget}
+  - 🎨 Thème souhaité : \${onboarding.theme || "non précisé"}
+  - ⚡ Priorité(s) : \${onboarding.urgent}
+  - 🧑‍🤝‍🧑 Prestataires déjà trouvés : \${onboarding.prestataires}
+  - 🧠 Degré d'organisation / accompagnement souhaité : \${onboarding.organisateurs}
 
   En t’appuyant sur ces éléments, génère une **liste de 30 à 60 tâches** détaillées qui aideront ce couple à organiser leur mariage de façon sereine et personnalisée.
 
   ### Format attendu pour chaque tâche :
   {
     "title": "Titre de la tâche",
-    "description": "Une explication claire et concrète, rédigée en 1 à 3 paragraphes si nécessaire. Elle doit expliquer pourquoi cette tâche est utile, quand et comment la réaliser, et inclure des conseils adaptés au contexte du couple.",
+    "description": "Une explication claire et concrète, rédigée en 3 à 4 paragraphes si nécessaire. Elle doit expliquer pourquoi cette tâche est utile, quand et comment la réaliser, et inclure un **conseil pratique** commençant explicitement par « Mon conseil : » directement dans la description. Donne des conseils adaptés au contexte du couple.",
     "category": "Une catégorie pertinente (ex: Lieu, Prestataires, Budget, Logistique...)",
     "offset": -12, // nombre de mois avant le mariage où la tâche doit idéalement être réalisée
     "priority": "haute" // peut être "haute", "moyenne" ou "basse"
   }
 
-  La description doit être complète : 2 à 3 paragraphes si le sujet s’y prête. Donne des conseils pratiques, des étapes concrètes, et justifie pourquoi cette tâche est importante. Ne reste pas générique ou superficiel.
-  Renvoie **uniquement** un tableau JSON **valide** avec ces objets. Aucun texte autour, juste le tableau.
-  Pas de commentaire, pas de phrase, pas de bloc Markdown.
+  ⚠️ La description doit être riche, concrète, et aller en profondeur. Évite toute formulation générique ou superficielle. Raconte chaque tâche comme une mini-histoire : explique son importance, ses bénéfices, ses impacts potentiels, et intègre un « Mon conseil : … » à la fin pour aider le couple à la mettre en œuvre facilement (sans markdown "**" etc.).
+
+  Renvoie **uniquement** un tableau JSON **valide** avec ces objets. Aucun texte autour, juste le tableau. Pas de commentaire, pas de phrase, pas de bloc Markdown.
+
   ⚠️ Ne coupe jamais la réponse en cours. Réponds uniquement avec un tableau JSON complet, même s’il contient moins de 60 tâches. N’écris jamais un texte non JSON autour.
   Si tu dois couper, termine correctement le tableau avec "]".
 
   Utilise un ton bienveillant, professionnel, et pertinent.
-  `
+  `;
+
 
   try {
     const completion = await openai.chat.completions.create({
@@ -105,6 +107,7 @@ export async function POST() {
             priority: item.priority,
             prestataires: item.prestataires || "",
             organisateurs: item.organisateurs || "",
+            status: "À faire",
           },
         });
       })

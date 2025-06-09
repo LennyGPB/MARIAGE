@@ -36,7 +36,7 @@ export default async function Mentions() {
             SIRET : 938 832 987 00011<br /><br />
 
            <strong>Hébergement</strong>  <br />
-            Nom de l’hébergeur : Vercel Inc.<br />
+            Nom de l&ldquo;hébergeur : Vercel Inc.<br />
             Site : https://vercel.com/<br /><br />
 
             <strong>Propriété intellectuelle</strong><br />

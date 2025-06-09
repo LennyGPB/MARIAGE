@@ -1,4 +1,3 @@
-// app/api/ai/question/route.ts
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";

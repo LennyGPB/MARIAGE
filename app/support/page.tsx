@@ -1,13 +1,11 @@
 "use client";
 
 import Navbar from "@/components/shared/Navbar";
-import { SparklesText } from "@/components/magicui/sparkles-text";
-import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 export default function Support() {
   const { data: session } = useSession();
-  const [user, setUser] = useState(session?.user || null);
+  const user = session?.user || null;
 
   return (
     <>

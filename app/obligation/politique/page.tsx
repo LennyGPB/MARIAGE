@@ -30,7 +30,7 @@ export default async function Politique() {
         <h1 className="text-2xl">POLITIQUE DE CONFIDENTIALITÉ</h1>
         <p className="mt-10">
             1. Données collectées<br />
-            Lors de la création de compte et de l&ldquo;utilisation des services, nous collectons les données suivantes :<br /><br />
+            Lors de la création de compte et de l&apos;utilisation des services, nous collectons les données suivantes :<br /><br />
 
             - Email<br />
             - Prénom<br /><br />
@@ -40,7 +40,7 @@ export default async function Politique() {
 
             - Créer et gérer le compte utilisateur<br />
             - Traiter les paiements via Stripe<br />
-            - Permettre l&ldquo;envoi de messages via le formulaire de contact (Formspree)<br /><br />
+            - Permettre l&apos;envoi de messages via le formulaire de contact (Formspree)<br /><br />
 
             3. Destinataires et sous-traitants<br />
             Les données peuvent être partagées avec :<br /><br />
@@ -52,11 +52,11 @@ export default async function Politique() {
             Les données sont stockées dans la base de données hébergée sur Vercel.<br /><br />
 
             5. Durée de conservation<br />
-            Les données sont conservées jusqu&ldquo;à la suppression du compte par l&ldquo;utilisateur.<br /><br />
+            Les données sont conservées jusqu&apos;à la suppression du compte par l&apos;utilisateur.<br /><br />
 
             6. Droits des utilisateurs<br />
-            Conformément à la législation en vigueur (RGPD), les utilisateurs disposent d&ldquo;un droit d&ldquo;accès, de rectification et de suppression de leurs données.<br />
-            Pour exercer ces droits, envoyez un email à : gleam-pro@proton.me ou via la section "Support" du site.
+            Conformément à la législation en vigueur (RGPD), les utilisateurs disposent d&apos;un droit d&apos;accès, de rectification et de suppression de leurs données.<br />
+            Pour exercer ces droits, envoyez un email à : gleam-pro@proton.me ou via la section &quot;Support&quot; du site.
         </p>
     </article>
 

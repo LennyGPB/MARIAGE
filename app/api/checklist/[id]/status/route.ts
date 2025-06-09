@@ -5,12 +5,21 @@ import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { authConfig } from "@/lib/auth.config";
+import { softLimiter } from "@/lib/rateLimiter";
 
 export async function PATCH(req: Request, { params }: { params: any }) {
   const session = await getServerSession(authConfig);
 
   if (!session || !session.user?.id) {
     return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
+  }
+
+  const ip = req.headers.get("x-forwarded-for") || "";
+  const key = session?.user?.id ?? ip;
+  
+  const { success } = await softLimiter.limit(key);
+  if (!success) {
+    return NextResponse.json({ message: "Trop de requêtes. Réessaie plus tard." }, { status: 429 });
   }
 
   const taskId = params.id;

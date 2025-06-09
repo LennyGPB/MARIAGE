@@ -1,28 +1,29 @@
-"use client";
-
 import Navbar from "@/components/shared/Navbar";
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/lib/auth.config";
+import { prisma } from "@/lib/prisma";
 
-export default function Support() {
-  const { data: session } = useSession();
-  const user = session?.user || null;
+export default async function Support() {
+   const session = await getServerSession(authConfig);
+    let user = null;
+  
+    if (session?.user?.id) {
+      user = await prisma.user.findUnique({
+        where: { id: session.user.id },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          image: true,
+          premium: true,
+          hasChecklist: true,
+        },
+      });
+    }
 
   return (
     <>
-    <Navbar
-      user={
-        user
-          ? {
-              id: user.id,
-              name: user.name ?? null,
-              email: user.email ?? "",
-              image: user.image ?? null,
-              premium: user.premium ?? false,
-              hasChecklist: user.haschecklist ?? false,
-            }
-          : null
-      }
-    />
+    <Navbar user={user}/>
     
     <article className="font-sans flex flex-col justify-center items-center tracking-widest mt-24 mb-20 px-5 sm:px-0">
       <h2 className="tracking-widest font-light text-xl md:text-4xl text-center">
@@ -55,9 +56,6 @@ export default function Support() {
       </form>
     </article>
 
-
-
-   
     </>
   );
 }

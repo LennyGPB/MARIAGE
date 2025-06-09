@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { authConfig } from "@/lib/auth.config";
+import { strictLimiter } from "@/lib/rateLimiter";
 
 // 🔑 Initialise le client OpenAI
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
@@ -17,9 +18,16 @@ interface ChecklistItemInput {
   prestataires?: string;
 }
 
-export async function POST() {
+export async function POST(req: Request) {
   const session = await getServerSession(authConfig);
 
+  const ip = req.headers.get("x-forwarded-for") || "";
+  const key = session?.user?.id ?? ip;
+  const { success } = await strictLimiter.limit(key);
+  if (!success) {
+    return NextResponse.json({ message: "Trop de requêtes. Réessaie plus tard !" }, { status: 429 });
+  }
+  
   // 🔐 Vérifie que l'utilisateur est connecté
   if (!session || !session.user?.id) {
     return NextResponse.json({ error: "Non autorisé" }, { status: 401 });

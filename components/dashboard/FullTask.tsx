@@ -135,7 +135,7 @@ export default function FullTask({ task, onBack, onEdit, onQuestion }: Props) {
 
         <div className="md:hidden mb-20 tracking-widest">
             
-            <div className="flex justify-center items-center px-3">
+            <div className="flex justify-start items-center px-3">
                 <button onClick={onBack} className="text-xs text-white bg-pinkk px-4 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105">← Retourner en arrière</button>
             </div>
 

@@ -103,9 +103,9 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
 
         </div>
 
-         <nav className="md:hidden mt- z-50 fixed top-5 left-1/2 transform -translate-x-1/2 text-sm font-inter flex justify-center md:justify-between px-3 items-center text-white bg-pinkk w-[350px] md:w-[1000px] rounded-3xl py-2 tracking-widest">
+         <nav className="md:hidden z-50 fixed top-5 left-1/2 transform -translate-x-1/2 text-sm font-inter flex justify-center md:justify-between px-3 items-center text-white bg-pinkk w-[350px] md:w-[1000px] rounded-3xl py-2 tracking-widest">
             <Link href="/">
-            <p className="text-2xl md:text-4xl ml-3 px-2 md:px-5 font-hatch text-white">EW</p>
+            <p className="text-xl md:text-4xl ml-3 px-2 md:px-5 font-hatch text-white">EW</p>
             </Link>
 
         

@@ -29,7 +29,7 @@ export default function Lieu({ onAnswer,onNext }: Props) {
                 <h1 className="text-3xl md:text-5xl text-center px-5 sm:px-0">Avez-vous déjà réservé un lieu ?</h1>
             </div>
 
-            <div className="flex  justify-center items center gap-5 text-sm text-black mt-7 mb-7">
+            <div className="flex justify-center items center gap-5 flex-wrap text-sm text-black mt-7 mb-7 ">
                 <button onClick={() => setSelected('Oui')} className={`${base} ${is('Oui') ? active : inactive}`}>Oui</button>
                 <button onClick={() => setSelected('Non')} className={`${base} ${is('Non') ? active : inactive}`}>Non</button>
                 <button onClick={() => setSelected('En cours')} className={`${base} ${is('En cours') ? active : inactive}`}>En cours</button>

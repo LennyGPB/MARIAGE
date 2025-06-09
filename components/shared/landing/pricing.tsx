@@ -54,7 +54,8 @@ export default function Pricing({user} : Props) {
                     <p className="bg-pinkk text-white rounded-xl w-40 text-center mx-4 font-bold">Offre Premium</p>
 
                     <div className="mt-7 mx-5 flex items-end ">
-                        <p className=" font-bold text-3xl">49$/</p>
+                        <p className="font-bold text-3xl line-through text-gray-400">49$</p>
+                        <p className="font-bold text-3xl ml-2">29$/</p>
                         <p className=" text-md">à vie</p>
                     </div>
 

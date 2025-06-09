@@ -61,9 +61,9 @@ export default function Navbar({user} : Props) {
         {/* NAVBAR MOBILE ------------------------------------------------------------------------------------------------ */}
         <nav className="sm:hidden mt-7 font-sans text-xs text-black tracking-widest">
             <div className="flex justify-between items-center h-[52px] px-5 rounded-2xl ">
-                <p className="text-4xl font-hatch text-[#DB80FF] ">EW</p>
+                <Link href="/" className="text-4xl font-hatch text-[#DB80FF] ">EW</Link>
                
-                <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"} className="text-xs bg-[#DB80FF] text-white px-8 py-1 rounded-lg font-bold uppercase mr-3">OnBoarding</Link>
+                <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"} className="text-xs bg-[#DB80FF] text-white px-8 py-1 rounded-lg font-bold uppercase mr-3">Ma checklist</Link>
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-7" onClick={() => setIsMobileMenuOpen(true)} aria-expanded={isMobileMenuOpen}>
                     <title>Menu icon</title>
@@ -76,12 +76,12 @@ export default function Navbar({user} : Props) {
               <div className="fixed top-0 left-0 h-screen w-[280px] bg-white p-5" onClick={(event) => event.stopPropagation()}>
                 <div className="flex flex-col tracking-widest">
                   <div className="flex items-center gap-3 mb-5">
-                    <p className="text-4xl font-hatch text-[#DB80FF] ">EW</p>
+                    <Link href="/" className="text-4xl font-hatch text-[#DB80FF]">EW</Link>
                   </div>
 
                 <div className="flex flex-col gap-3 text-black/80">
                     <Link href="/">Accueil</Link>
-                    <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"}>OnBoarding</Link>
+                    <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"}>Ma checklist</Link>
                     <Link href="#/#price">Prix</Link>
                     <Link href="/support">Support</Link>
                 </div>

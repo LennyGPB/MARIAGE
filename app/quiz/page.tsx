@@ -151,7 +151,7 @@ export default function Quiz() {
         {step === 9 && (
           !session ? (
             <article className="flex flex-col justify-center items-center tracking-widest font-sans font-light mt-12 md:mt-20 ">
-              <h1 className="text-xl mb-10 font-light">Débloquer votre <span className="font-medium">checklist personnalisée !</span></h1>
+              <h1 className="text-lg md:text-xl mb-10 font-light">Débloquer votre <span className="font-medium">checklist personnalisée !</span></h1>
               <RegisterModal />
             </article>
           ) : 

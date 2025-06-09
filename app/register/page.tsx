@@ -41,9 +41,9 @@ export default function Register() {
         <>
         <Navbar />
         <section className="font-inter tracking-widest flex flex-col items-center justify-center mt-24 ">
-            <div className="relative bg-white p-8 rounded-lg shadow-md w-96 overflow-hidden">
+            <div className="relative bg-white p-8 rounded-lg shadow-md w-80 md:w-96 overflow-hidden">
                 <BorderBeam size={100} colorFrom="#DB80FF" colorTo="#DB80FF" />
-                <h2 className="text-xl  text-center tracking-[2px]">Inscrivez-vous !</h2>
+                <h2 className="text-xl text-center tracking-[2px]">Inscrivez-vous !</h2>
                 <p className="text-xs mb-6 text-center opacity-50">Débloquer complètement votre checklist</p>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4 text-sm">

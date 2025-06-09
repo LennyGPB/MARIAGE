@@ -33,7 +33,7 @@ export default function Login() {
         <>
         <Navbar />
         <section className="font-inter tracking-widest flex flex-col items-center justify-center mt-24 ">
-            <div className="relative bg-white p-8 rounded-lg shadow-md w-96 overflow-hidden">
+            <div className="relative bg-white p-8 rounded-lg shadow-md w-80 md:w-96 overflow-hidden">
                 <BorderBeam size={100} colorFrom="#DB80FF" colorTo="#DB80FF" />
                 <h2 className="text-xl mb-6 text-center tracking-[2px]">Vous êtes de retour !</h2>
                 <form onSubmit={handleSubmit}>

@@ -86,7 +86,7 @@ export default function Navbar({user} : Props) {
                     <Link href="/support">Support</Link>
                 </div>
 
-                <button className="bg-[#DB80FF] text-white px-5 py-1 rounded-lg font-bold uppercase mt-5">Se connecter</button>
+                <Link href="/login" className="bg-[#DB80FF] text-center text-white px-5 py-1 rounded-lg font-bold uppercase mt-5">Se connecter</Link>
 
                 
                 </div>

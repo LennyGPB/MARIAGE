@@ -60,12 +60,12 @@ export async function DELETE(req: Request, { params }: { params: any }) {
       );
     }
 
-    if (!task.isCustom) {
-      return NextResponse.json(
-        { error: "Impossible de supprimer une tâche IA" },
-        { status: 400 }
-      );
-    }
+    // if (!task.isCustom) {
+    //   return NextResponse.json(
+    //     { error: "Impossible de supprimer une tâche IA" },
+    //     { status: 400 }
+    //   );
+    // }
 
     await prisma.checklistItem.delete({
       where: { id: taskId },

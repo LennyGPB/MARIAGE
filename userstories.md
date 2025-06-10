@@ -16,7 +16,7 @@
 -- DELETE /api/checklist/:id -> supprimer une tâche personnalisée
 -- DELETE /api/checklist -> supprimer toutes les tâches de l’utilisateur
 
-POST /api/ai/question -> poser une question à l'IA en rapport avec une tâche.
+-- POST /api/ai/question -> poser une question à l'IA en rapport avec une tâche.
 
 -- POST /api/stripe/checkout-session -> créer une session de paiement Stripe (premium)
 -- POST /api/stripe/webhook -> recevoir les événements Stripe (paiement réussi, etc.)

@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { cp } from "fs";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 type Props = {
   onBack: () => void;
 }
 
 export default function EditDate({ onBack }: Props) {
+    const { data: session } = useSession();
     const [idealDate, setIdealDate] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [dateMariage, setDateMariage] = useState<string>("");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -24,8 +28,8 @@ export default function EditDate({ onBack }: Props) {
             });
 
             if (!response.ok) {
-                throw new Error("Échec de la mise à jour de la tâche");
                 setIsLoading(false);
+                throw new Error("Échec de la mise à jour de la tâche");
             }
 
             setIsLoading(false);
@@ -35,6 +39,40 @@ export default function EditDate({ onBack }: Props) {
             console.error("Erreur lors de la mise à jour de la tâche :", error);
         }
     }
+
+    useEffect(() => {
+        const fetchOnBoarding = async () => { 
+        if (!session) { 
+            window.location.href = "/"; 
+            return; 
+        }
+        
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/onboarding`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            });
+
+            if (!response.ok) {
+            throw new Error("Failed to fetch onboarding status");
+            }
+
+            const data = await response.json();
+            setDateMariage(
+                data.weddingDate
+                    ? new Date(data.weddingDate).toLocaleDateString("fr-FR")
+                    : ""
+            );
+
+        } catch (error) {
+            console.error("Error fetching onboarding status:", error);
+        }
+        } 
+
+        fetchOnBoarding();
+    }, []);
 
     return (
         <div className="mb-20">
@@ -46,7 +84,7 @@ export default function EditDate({ onBack }: Props) {
             <article  className="overflow-hidden tracking-wide mb-10 font-inter mt-3 text-black w-[350px] md:w-[800px] py-5 rounded-3xl bg-white mx-auto  p-5 [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]">
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
-                    <label htmlFor="idealDate" className="text-sm font-bold">Modifier la date du mariage</label>
+                    <label htmlFor="idealDate" className="text-sm font-bold">Modifier la date du mariage (date actuelle : {dateMariage})</label>
                     <p className="text-xs">La checklist sera regeneré en prenant en compte la nouvelle date du mariage.</p>
                     <input type="date" id="idealDate" value={idealDate} onChange={(e) => setIdealDate(e.target.value)} className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-500"/>
             </div>
@@ -66,7 +104,7 @@ export default function EditDate({ onBack }: Props) {
                 </div>
                 } 
 
-                <button type="submit" className="mt-4 bg-pinkk text-white px-4 py-2 rounded-lg border hover:border hover:scale-105 transition duration-300 ease-in-out">Enregistrer</button>
+                <button disabled={isLoading} type="submit" className="mt-4 bg-pinkk text-white px-4 py-2 rounded-lg border hover:border hover:scale-105 transition duration-300 ease-in-out">Enregistrer</button>
             </form>
         </article>
         </div>

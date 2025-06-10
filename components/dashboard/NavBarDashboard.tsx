@@ -27,12 +27,9 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
         tasks?: TaskType[];
     }) {     
 
-    console.log("NavbarDashboard tasks:", tasks);
-
     const totalTasks = tasks?.length ?? 0;
     const completedTasks = tasks ? tasks.filter(task => task.status === "Terminée").length : 0;
     const progress = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
-
 
     return (
         <>
@@ -88,15 +85,23 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
         </nav>
 
         <div className="md:hidden mt-24 flex gap-2 justify-between px-10 items-center ">
-            <AnimatedCircularProgressBar
-            max={100}
-            value={progress}
-            min={0}
-            gaugePrimaryColor="#DB80FF"
-            gaugeSecondaryColor="#E5E7EB"
-            className="w-[35px] h-[35px] text-sm"
-            />
             <div className="flex gap-2">
+                <AnimatedCircularProgressBar
+                max={100}
+                value={progress}
+                min={0}
+                gaugePrimaryColor="#DB80FF"
+                gaugeSecondaryColor="#E5E7EB"
+                className="w-[35px] h-[35px] text-sm"
+                />
+            </div>
+            <select className="text-xs opacity-65 tracking-widest bg-transparent" onChange={(e) => onVisibleChange && onVisibleChange(e.target.value)}>
+                <option className="text-black" value="">Visibilité (Tous) </option>
+                <option className="text-black"value="true">Visible</option>
+                <option className="text-black" value="false">Caché</option>
+            </select>
+            <div className="flex gap-2">
+          
             <button onClick={onAddTask} className=" text-white p-1 rounded-2xl bg-pinkk hover:scale-105 transition duration-300 ease-in-out"><AddIcon /></button>
             <button onClick={onEditDate} className=" text-white p-1 rounded-2xl bg-pinkk hover:scale-105 transition duration-300 ease-in-out"><EditCalendarIcon /></button>
             </div>
@@ -138,10 +143,7 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
                 </select>
             </div>
 
-            <div className="hidden md:flex gap-6">
-                <button onClick={onAddTask} className="bg-white text-black px-5 py-1 rounded-2xl hover:scale-105 transition duration-300 ease-in-out">+ Ajouter une tâche</button>
-                <button onClick={onEditDate} className="bg-white text-black px-5 py-1 rounded-2xl hover:scale-105 transition duration-300 ease-in-out">Modifier la date</button>
-            </div>
+
         </nav>
 
 

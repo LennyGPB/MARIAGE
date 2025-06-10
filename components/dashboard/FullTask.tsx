@@ -75,6 +75,25 @@ export default function FullTask({ task, onBack, onEdit, onQuestion }: Props) {
         }
     }
 
+    // const handleDelete = async () => {
+    //     try {
+    //         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/checklist/`, {
+    //             method: "DELETE",
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             },
+    //             body: JSON.stringify({ id: task.id })
+    //         });
+
+    //         if (!res.ok) {
+    //             throw new Error("Échec de la suppression");
+    //         }
+                
+    //     } catch (error) {
+    //         console.error("Erreur lors de la suppression de la tâche :", error);
+    //     }
+    // }
+
     const indexConseil = task.description.indexOf("Mon conseil :");
 
     let before = task.description;
@@ -105,8 +124,9 @@ export default function FullTask({ task, onBack, onEdit, onQuestion }: Props) {
                         <div className="flex items-center gap-1">
                             <p className="">Catégorie : </p>
                             <p className="text-xs text-white bg-pinkk rounded-2xl px-5 py-1">Lieu</p>
-                        </div>
-                        
+
+                            {/* <ClearIcon className="cursor-pointer transition duration-300 ease-in-out hover:scale-105 ml-2"  /> */}
+                        </div>                       
                     </div>
                 </div>
                 <div className="flex flex-col h-full mt-5 gap-5">

@@ -69,12 +69,12 @@ export default function Task({ task, onSelect, onRefresh }: Props) {
             </div> 
         </button>
 
-        <button onClick={() => onSelect(task)} className={`md:hidden relative font-inter text-black w-[350px] h-[150px] rounded-3xl bg-white mx-auto p-5 transition duration-300 ease-in-out hover:border hover:scale-105 ${isChecked ? "opacity-50" : ""} [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]`}>
+        <button onClick={() => onSelect(task)} className={`md:hidden relative font-inter text-black w-[350px] h-[160px] rounded-3xl bg-white mx-auto p-5 transition duration-300 ease-in-out hover:border hover:scale-105 ${isChecked ? "opacity-50" : ""} [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]`}>
               <input checked={isChecked} onChange={handleToggle} type="checkbox" onClick={(e) => e.stopPropagation()} className="absolute top-[-4px] left-[-4px] w-6 h-6 accent-pinkk"/>
             <div className="flex flex-col mb-8 text-sm tracking-widest ">
                 <p className="text-xs font-semibold tracking-widest font-sans">{task.title}</p>
                 <p className="text-[9px] opacity-50">À faire avant le {formatFrenchDate(task.idealDate)}</p>
-                <p className="font-sans text-[9px] opacity-50 mt-3 text-center">{task.description.slice(0, 30)}...</p>
+                <p className="font-sans text-[9px] opacity-50 mt-3 text-center leading-4">{task.description.slice(0, 90)}...</p>
             </div> 
             <div className="absolute bottom-2 left-4 right-4 flex justify-between items-center gap-3 text-black text-sm tracking-widest">
                 <p className="font-bold text-[9px] text-black/70 bg-black/10 rounded-2xl px-3 py-1">{task.category}</p>

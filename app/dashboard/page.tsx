@@ -9,6 +9,7 @@ import EditTask from "@/components/dashboard/EditTask";
 import AddTask from "@/components/dashboard/AddTask";
 import EditDate from "@/components/dashboard/EditDate";
 import AiQuestion from "@/components/dashboard/AiQuestion";
+import Footer from "@/components/shared/Footer";
 
 type TaskType = {
   id: string | number;
@@ -34,6 +35,7 @@ export default function Dashboard() {
     const [filterVisible, setFilterVisible] = useState<"true" | "false" | "">("");
     const [filterCategory, setFilterCategory] = useState<string>("");
 
+
     const refreshTasks = async () => {
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/checklist`);
@@ -44,10 +46,6 @@ export default function Dashboard() {
             console.error("Erreur lors du rafraîchissement des tâches:", error);
         }
     };
-
-
-
-
 
     useEffect(() => {
         const fetchTasks = async () => {
@@ -78,7 +76,6 @@ export default function Dashboard() {
 
     return true;
     });
-
 
 
     return (
@@ -143,6 +140,7 @@ export default function Dashboard() {
 
            {!isEditing && !editDateOpen && !addTask && questionOpen && selectedTask && <AiQuestion task={selectedTask} onBack={() => {setQuestionOpen(false)}}  />}
 
+            <Footer />
         </section>
 
 

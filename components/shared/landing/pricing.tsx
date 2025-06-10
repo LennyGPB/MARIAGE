@@ -61,13 +61,14 @@ export default function Pricing({user} : Props) {
 
                     {/* <p className="text-sm mt-4 mx-5">BLABLABLABLA</p> */}
 
-                    <div className="flex flex-col gap-2 mx-5 mt-7 text-sm">
-                        <p><CheckCircleIcon className="mr-1" /> Checklist personnalisée</p>
-                        <p><CheckCircleIcon className="mr-1"/> Nombre de tâches illimitées</p>
-                        <p><CheckCircleIcon className="mr-1"/> Vue par catégorie et par mois</p>
-                        <p><CheckCircleIcon className="mr-1"/> Mises à jour gratuites à vie</p>
-                        <p><CheckCircleIcon className="mr-1"/> Aucune publicité</p>
-                        <p><CheckCircleIcon className="mr-1"/> Support prioritaire</p>
+                    <div className="flex flex-col gap-2 mx-5 mt-7 text-sm ">
+                        <p><CheckCircleIcon className="mr-1 text-pinkk" /> Checklist personnalisée</p>
+                        <p><CheckCircleIcon className="mr-1 text-pinkk"/> Nombre de tâches illimitées</p>
+                        <p><CheckCircleIcon className="mr-1 text-pinkk"/> Vue par catégorie et par mois</p>
+                        <p><CheckCircleIcon className="mr-1 text-pinkk"/> Mises à jour gratuites à vie</p>
+                        <p><CheckCircleIcon className="mr-1 text-pinkk"/> Aucune publicité</p>
+                        <p><CheckCircleIcon className="mr-1 text-pinkk"/> Support prioritaire</p>
+                        <p><CheckCircleIcon className="mr-1 text-pinkk"/> Aide IA illimitée</p>
                     </div>
 
                     <div className="flex justify-center mt-7">

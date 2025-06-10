@@ -7,6 +7,7 @@ import { authConfig } from "@/lib/auth.config";
 import AccordionComponent from "@/components/shared/landing/Accordion";
 import Velocity from "@/components/shared/landing/Velocity";
 import Footer from "@/components/shared/Footer";
+import Head from "next/head";
 
 export default async function Home() {
   const session = await getServerSession(authConfig);
@@ -28,6 +29,14 @@ export default async function Home() {
 
   return (
     <>
+
+    <Head>
+      <title>EasyWed - Accueil</title>
+      <meta name="description" content="Générez une checklist intelligente et personnalisée pour organiser votre mariage, en quelques clics !"/>
+      <meta name="og:title" content="EasyWed - Planificateur de mariage IA"/>
+      <meta name="og:description" content="Générez une checklist intelligente et personnalisée pour organiser votre mariage, en quelques clics !"/>
+    </Head>
+
       <Navbar user={user} />
       <LandingMain user={user} />
       <Velocity />

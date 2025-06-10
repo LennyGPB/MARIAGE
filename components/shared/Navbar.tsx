@@ -63,7 +63,18 @@ export default function Navbar({user} : Props) {
             <div className="flex justify-between items-center h-[52px] px-5 rounded-2xl ">
                 <Link href="/" className="text-4xl font-hatch text-[#DB80FF] ">EW</Link>
                
-                <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"} className="text-xs bg-[#DB80FF] text-white px-8 py-1 rounded-lg font-bold uppercase mr-3">Ma checklist</Link>
+               {session ?
+                <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"}className="text-xs bg-[#DB80FF] text-white px-8 py-1 rounded-lg font-bold uppercase mr-3">
+                  Bonjour{" "}{user?.name? user.name.length > 8? user.name.slice(0, 8) + "...": user.name: ""}{" "}!
+                </Link>
+                  :
+                 <Link href="/login" className="text-xs bg-[#DB80FF] text-white px-8 py-1 rounded-lg font-bold uppercase mr-3">
+                  Se connecter
+                </Link>
+                }
+
+                  
+                
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-7" onClick={() => setIsMobileMenuOpen(true)} aria-expanded={isMobileMenuOpen}>
                     <title>Menu icon</title>

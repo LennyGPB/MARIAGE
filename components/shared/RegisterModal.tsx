@@ -5,6 +5,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 
 export default function RegisterModal() {
+    const [isLoading, setIsLoading] = useState(false);
 
     const [formData, setFormData] = useState({
         email: "",
@@ -14,9 +15,9 @@ export default function RegisterModal() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-       
+        setIsLoading(true);
+
         try {
-            // 1. Enregistrement de l'utilisateur
             const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/register`, {
             method: "POST",
             headers: {
@@ -30,14 +31,13 @@ export default function RegisterModal() {
             });
 
             if (response.ok) {
-            // 2. Connexion automatique
             await signIn("credentials", {
                 redirect: false,
                 email: formData.email,
                 password: formData.password,
             });
 
-            // 3. Récupération des réponses du quiz depuis le localStorage
+            setIsLoading(false);
             const storedAnswers = localStorage.getItem("quizAnswers");
             if (!storedAnswers) throw new Error("Aucune réponse trouvée dans le localStorage");
 
@@ -83,7 +83,7 @@ export default function RegisterModal() {
                         <label htmlFor="password" className="block text-sm font-medium text-gray-700">Mot de passe</label>
                         <input value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} type="password" id="password" className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required />
                     </div>
-                    <button type="submit" className="uppercase font-sans w-full bg-[#DB80FF] text-white font-bold py-2 px-4 rounded-xl hover:scale-105 transition duration-300 ease-in-out">S&apos;inscrire</button>
+                    <button type="submit" className="uppercase font-sans w-full bg-[#DB80FF] text-white font-bold py-2 px-4 rounded-xl hover:scale-105 transition duration-300 ease-in-out">{isLoading ? "Chargement..." : "S'inscrire"} </button>
                 </form>
             </div>
             {/* <p className="mt-4 text-sm text-gray-600/50">Pas encore de compte ? <a href="/register" className="text-[#DB80FF] hover:underline">S'inscrire</a></p> */}

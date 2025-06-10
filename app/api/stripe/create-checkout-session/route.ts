@@ -21,7 +21,7 @@ export async function POST(req: Request) {
               name: "Accès Premium à la checklist",
               description: "Checklist illimitée et fonctionnalités premium",
             },
-            unit_amount: 2900, // 29€ en centimes
+            unit_amount: 100, // 29€ en centimes
           },
           quantity: 1,
         },

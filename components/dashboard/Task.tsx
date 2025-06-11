@@ -52,8 +52,8 @@ export default function Task({ task, onSelect, onRefresh }: Props) {
     return (
         <>
 
-        <button onClick={() => onSelect(task)} className={`hidden md:block relative font-inter text-black w-[1000px] h-[120px] rounded-3xl bg-white mx-auto p-5 transition duration-300 ease-in-out hover:border hover:scale-105 ${isChecked ? "opacity-50" : ""} [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]`}>
-            <div className="flex justify-between text-sm tracking-widest">
+        <button onClick={() => onSelect(task)} className={`hidden md:block relative font-inter text-black md:w-[770px] lg:w-[1000px] h-[120px] rounded-3xl bg-white mx-auto p-5 transition duration-300 ease-in-out hover:border hover:scale-105 ${isChecked ? "opacity-50" : ""} [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]`}>
+            <div className="flex justify-between text-xs lg:text-sm tracking-widest">
                 <div className="flex justify-center items-center">
                     <input checked={isChecked} onChange={handleToggle} type="checkbox" onClick={(e) => e.stopPropagation()} className="w-5 h-5 mr-3 accent-pinkk" />
                     <p className="font-semibold tracking-[2px] font-sans">{task.title}</p>
@@ -61,7 +61,7 @@ export default function Task({ task, onSelect, onRefresh }: Props) {
                 <p className="text-xs opacity-50">À faire avant le {formatFrenchDate(task.idealDate)}</p>
             </div>
 
-            <p className="font-sans text-xs opacity-50 mt-3 text-left">{task.description.slice(0, 62)}...</p>
+            <p className="font-sans text-[9px] lg:text-xs opacity-50 mt-3 text-left">{task.description.slice(0, 62)}...</p>
 
             <div className="flex justify-between items-center gap-3 mt-4 text-black text-sm  tracking-widest">
                 <p className="font-bold text-xs text-black/70 bg-black/10 rounded-2xl px-5 py-1">{task.category}</p>

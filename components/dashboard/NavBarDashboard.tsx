@@ -47,7 +47,7 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
              </div>
         </div>
 
-        <nav className="hidden z-50 fixed top-5 left-1/2 transform -translate-x-1/2 text-sm font-inter md:flex justify-center md:justify-between px-3 items-center text-white bg-pinkk w-[350px] md:w-[1000px] rounded-3xl py-2 tracking-widest">
+        <nav className="hidden z-50 fixed top-5 left-1/2 transform -translate-x-1/2 text-sm font-inter md:flex justify-center md:justify-between px-5 lg:px-3 items-center text-white bg-pinkk w-[350px] md:w-[1000px] rounded-3xl py-2 tracking-widest">
             <Link href="/">
             <p className="text-2xl md:text-4xl ml-3 px-2 md:px-5 font-hatch text-white">EW</p>
             </Link>
@@ -81,7 +81,7 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
                 </select>
             </div>
 
-            <div className="hidden md:flex gap-6">
+            <div className="hidden md:flex md:gap-3 lg:gap-6">
                 <button onClick={onAddTask} className="bg-white text-black px-5 py-1 rounded-2xl hover:scale-105 transition duration-300 ease-in-out">+ Ajouter une tâche</button>
                 <button onClick={onEditDate} className="bg-white text-black px-5 py-1 rounded-2xl hover:scale-105 transition duration-300 ease-in-out">Modifier la date</button>
             </div>
@@ -114,7 +114,7 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
             </Link>
 
         
-            <div className="text-[9px] flex justify-center items-center space-x-3 mr-6 tracking-[2px]">
+            <div className="text-[9px] flex justify-center items-center space-x-4 mr-6 tracking-[2px]">
                 <select onChange={(e) => onStatusChange && onStatusChange(e.target.value)} className="bg-transparent">
                     <option className="text-black" value="">Status (tous)</option>
                     <option className="text-black" value="todo">À faire</option>

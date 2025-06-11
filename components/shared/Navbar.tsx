@@ -27,15 +27,15 @@ export default function Navbar({user} : Props) {
 
     return (
         <>
-        <nav className="font-inter hidden sm:block  text-sm text-black tracking-widest">
+        <nav className="font-inter hidden sm:block text-sm text-black tracking-widest">
 
           <div className="flex justify-center items-center bg-pinkk w-full py-1 text-white font-bold">
             <p>Offre exclusive en cours !</p>
           </div>
 
-            <div className="mx-40 flex justify-between items-center h-[52px] rounded-2xl mt-5">
+            <div className="md:mx-10 lg:mx-40 flex justify-between items-center h-[52px] rounded-2xl mt-5">
                 <Link href="/"><p className="text-4xl font-hatch text-[#DB80FF] px-5">EW</p></Link>
-                <div className="flex justify-center items-center lg:space-x-20 ml-10 text-black/70 tracking-[2px]">                    
+                <div className="flex justify-center items-center md:space-x-10 lg:space-x-20 lg:ml-10 text-black/70 tracking-[2px]">                    
                     <Link href="/" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Accueil</Link>
                     <Link href="/#price" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Prix</Link>
                     <Link href="/support" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Support</Link>

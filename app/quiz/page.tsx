@@ -84,37 +84,54 @@ export default function Quiz() {
   }, [])
 
   useEffect(() => {
-    
     const sendOnboarding = async () => {
-      if (!session || step !== 9) return;
+      if (!session) return;
 
       const storedAnswers = localStorage.getItem("quizAnswers");
-      if (!storedAnswers) return; 
+      if (!storedAnswers) return;
 
       try {
         const parsedAnswers = JSON.parse(storedAnswers);
 
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/onboarding`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(parsedAnswers),
+          credentials: "include",
         });
 
         if (!response.ok) {
-          throw new Error("Erreur lors de l'envoi de l'onboarding");
+          if (response.status === 409) {
+            console.log("Onboarding déjà existant.");
+          } else {
+            throw new Error("Erreur lors de l'envoi de l'onboarding");
+          }
+        } else {
+          console.log("Onboarding créé avec succès !");
+          localStorage.removeItem("quizAnswers");
         }
 
-        console.log("Onboarding envoyé avec succès !");
-        localStorage.removeItem("quizAnswers");
+        // 🔥 Re-fetch l’onboarding pour mettre step à 9
+        const onboardingRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/onboarding`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        });
+
+        if (onboardingRes.ok) {
+          console.log("Onboarding récupéré après création !");
+          setStep(9); // 🔥 Passe automatiquement au step 9
+        } else {
+          console.error("Erreur lors de la récupération de l'onboarding après création");
+        }
       } catch (error) {
         console.error("Erreur lors de l'envoi de l'onboarding :", error);
       }
     };
 
     sendOnboarding();
-  }, [session, step]);
+  }, [session]);
+
 
 
   //  const handleSubmit = async () => {
@@ -150,7 +167,7 @@ export default function Quiz() {
         {step === 8 && <Organisateurs onAnswer={(val) => handleAnswer("organisateurs", val)} answers={answers} />}
         {step === 9 && (
           !session ? (
-            <article className="flex flex-col justify-center items-center tracking-widest font-sans font-light mt-12 md:mt-20 ">
+            <article className="flex flex-col justify-center items-center tracking-widest font-sans font-light mt-12 md:mt-12 ">
               <h1 className="text-center text-lg md:text-xl mb-10 font-light">Débloquer votre <span className="font-medium">checklist personnalisée !</span></h1>
               <RegisterModal />
             </article>

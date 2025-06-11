@@ -6,6 +6,7 @@ import { softLimiter } from "@/lib/rateLimiter";
 
 export async function POST(req: Request) {
   const session = await getServerSession(authConfig);
+  console.log("SESSION DANS API/ONBOARDING :", session);
 
   if (!session || !session.user?.id) {
     return NextResponse.json({ error: "Non autorisé" }, { status: 401 });

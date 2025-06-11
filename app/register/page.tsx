@@ -3,10 +3,12 @@
 import { BorderBeam } from "@/components/magicui/border-beam";
 import Navbar from "@/components/shared/Navbar";
 import { useState } from "react";
+import GoogleIcon from '@mui/icons-material/Google';
 
 export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { signIn } = require("next-auth/react");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -45,6 +47,18 @@ export default function Register() {
                 <BorderBeam size={100} colorFrom="#DB80FF" colorTo="#DB80FF" />
                 <h2 className="text-xl text-center tracking-[2px]">Inscrivez-vous !</h2>
                 <p className="text-xs mb-6 text-center opacity-50">Débloquer complètement votre checklist</p>
+
+                <button type="button" onClick={() => signIn("google", { callbackUrl: "/quiz" })} className="font-sans font-medium px-5 mx-auto flex justify-center items-center gap-2 bg-black  text-white py-2 rounded-xl hover:scale-105 transition duration-300 ease-in-out">
+                    Continuer avec Google
+                    <GoogleIcon />
+                </button>
+
+                <div className="flex items-center my-4">
+                    <span className="flex-grow h-px bg-gray-200"></span>
+                    <span className="mx-2 text-gray-400 text-xs">ou</span>
+                    <span className="flex-grow h-px bg-gray-200"></span>
+                </div>
+
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4 text-sm">
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>

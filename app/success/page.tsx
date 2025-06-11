@@ -91,8 +91,8 @@ export default function SuccessPage() {
     
     <div className="flex flex-col items-center justify-center tracking-widest mt-16 md:mt-20">
       <SparklesText className="font-sans text-2xl md:text-5xl font-light"><span className="text-[#DB80FF] font-bold">Merci</span> pour ta confiance !</SparklesText>
-      <p className="text-black/50 text-center md:text-left text-sm md:text-lg font-sans font-light mt-7 md:mt-4 w-[350px] md:w-[1000px] px-2"><span className="font-medium">Ta checklist</span> personnalisée va être générée par notre IA...</p>
-      <p className="text-black/50 text-center md:text-left text-sm md:text-lg font-sans font-light mt-4 md:mt-0 w-[350px] md:w-[1000px] px-2"><span className="font-medium">Pas besoin de rafraîchir</span> la page – nous nous occupons de tout !</p>
+      <p className="text-black/50 text-center md:text-left text-sm md:text-lg font-sans font-light mt-7 md:mt-4 sm:w-[350px] md:w-[620px] px-2"><span className="font-medium">Ta checklist</span> personnalisée va être générée par notre IA...</p>
+      <p className="text-black/50 text-center md:text-left text-sm md:text-lg font-sans font-light mt-4 md:mt-0 sm:w-[350px] md:w-[700px] px-2"><span className="font-medium">Pas besoin de rafraîchir</span> la page – nous nous occupons de tout !</p>
       <p className="text-black/50 text-xs font-sans font-light mt-4">Cela prend quelques secondes…</p>
       <div className="flex items-center justify-center mt-10">
 

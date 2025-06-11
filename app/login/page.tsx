@@ -4,6 +4,7 @@ import { BorderBeam } from "@/components/magicui/border-beam";
 import Navbar from "@/components/shared/Navbar";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import GoogleIcon from '@mui/icons-material/Google';
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -33,9 +34,21 @@ export default function Login() {
         <>
         <Navbar />
         <section className="font-inter tracking-widest flex flex-col items-center justify-center mt-24 ">
-            <div className="relative bg-white p-8 rounded-lg shadow-md w-80 md:w-96 overflow-hidden">
+            <div className="relative bg-white p-8 rounded-lg shadow-md w-80 md:w-[450px] overflow-hidden">
                 <BorderBeam size={100} colorFrom="#DB80FF" colorTo="#DB80FF" />
-                <h2 className="text-xl mb-6 text-center tracking-[2px]">Vous êtes de retour !</h2>
+                <h2 className="text-xl mb-4 text-center tracking-[2px]">Vous êtes de retour !</h2>
+
+                <button type="button" onClick={() => signIn("google", { callbackUrl: "/" })} className="font-sans font-medium px-5 mx-auto flex justify-center items-center gap-2 bg-black  text-white py-2 rounded-xl hover:scale-105 transition duration-300 ease-in-out">
+                    Continuer avec Google
+                    <GoogleIcon />
+                </button>
+
+                <div className="flex items-center my-4">
+                    <span className="flex-grow h-px bg-gray-200"></span>
+                    <span className="mx-2 text-gray-400 text-xs">ou</span>
+                    <span className="flex-grow h-px bg-gray-200"></span>
+                </div>
+
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4 text-sm">
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
@@ -47,6 +60,7 @@ export default function Login() {
                     </div>
                     {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
                     <button type="submit" className="uppercase font-sans w-full bg-[#DB80FF] text-white font-bold py-2 px-4 rounded-xl hover:scale-105 transition duration-300 ease-in-out">Se connecter</button>
+                    
                 </form>
             </div>
             <p className="mt-4 text-sm text-gray-600/50">Pas encore de compte ? <a href="/register" className="text-[#DB80FF] hover:underline">S&apos;inscrire</a></p>

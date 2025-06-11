@@ -3,6 +3,7 @@
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import GoogleIcon from '@mui/icons-material/Google';
 
 export default function RegisterModal() {
     const [isLoading, setIsLoading] = useState(false);
@@ -63,13 +64,40 @@ export default function RegisterModal() {
         }
     };
 
+    const handleGoogleSignUp = async () => {
+    setIsLoading(true);
+
+    try {
+        await signIn("google", { callbackUrl: "/quiz" });
+        // Pas besoin de plus : l'envoi onboarding est déclenché automatiquement dans Quiz.tsx
+    } catch (error) {
+        console.error("Erreur lors de l'inscription Google :", error);
+    } finally {
+        setIsLoading(false);
+    }
+    };
+
+
+
     return (
         <>
-        <section className="font-inter tracking-widest flex flex-col items-center justify-center ">
+        <section className="font-inter tracking-widest flex flex-col items-center justify-center mb-20">
             <div className="relative bg-white p-8 rounded-lg shadow-md w-80 md:w-96 overflow-hidden">
                 <BorderBeam size={100} colorFrom="#DB80FF" colorTo="#DB80FF" />
-                <h2 className="text-xl  text-center tracking-[2px]">Inscrivez-vous !</h2>
+                <h2 className="text-xl text-center tracking-[2px]">Inscrivez-vous !</h2>
                 <p className="text-xs mb-6 text-center opacity-50">Débloquer complètement votre checklist</p>
+
+                 <button type="button" onClick={handleGoogleSignUp} className="font-sans font-medium px-5 mx-auto flex justify-center items-center gap-2 bg-black  text-white py-2 rounded-xl hover:scale-105 transition duration-300 ease-in-out">
+                    Continuer avec Google
+                    <GoogleIcon />
+                </button>
+
+                <div className="flex items-center my-4">
+                    <span className="flex-grow h-px bg-gray-200"></span>
+                    <span className="mx-2 text-gray-400 text-xs">ou</span>
+                    <span className="flex-grow h-px bg-gray-200"></span>
+                </div>
+
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4 text-sm">
                         <label htmlFor="prenom" className="block text-sm font-medium text-gray-700">Prénom</label>

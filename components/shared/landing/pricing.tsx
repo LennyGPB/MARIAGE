@@ -21,6 +21,11 @@ export default function Pricing({user} : Props) {
     const [textPremium, setTextPremium] = useState("Obtenir l'offre Premium");
 
     const handleCheckout = async () => {
+        if (!session) {
+            window.location.href = "/register";
+            return;
+        }
+
         if (user?.premium) {
             setTextPremium("Vous êtes déjà Premium !");
             return;

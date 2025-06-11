@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import SmartToyIcon from '@mui/icons-material/SmartToy';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 type TaskType = {
   id: string | number;

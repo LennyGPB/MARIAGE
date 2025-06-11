@@ -3,7 +3,6 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useState } from 'react';
-import { Marquee } from "@/components/magicui/marquee";
 import { SparklesText } from '@/components/magicui/sparkles-text';
 
 type Props = {

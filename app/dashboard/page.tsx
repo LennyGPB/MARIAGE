@@ -9,7 +9,6 @@ import EditTask from "@/components/dashboard/EditTask";
 import AddTask from "@/components/dashboard/AddTask";
 import EditDate from "@/components/dashboard/EditDate";
 import AiQuestion from "@/components/dashboard/AiQuestion";
-import Footer from "@/components/shared/Footer";
 import { SparklesText } from "@/components/magicui/sparkles-text";
 import { useSession } from "next-auth/react";
 

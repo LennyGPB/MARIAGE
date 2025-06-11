@@ -82,7 +82,7 @@ export default function EditDate({ onBack }: Props) {
 
             <article  className="overflow-hidden tracking-wide mb-10 font-inter mt-3 text-black w-[350px] md:w-[800px] py-5 rounded-3xl bg-white mx-auto  p-5 [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]">
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-3 md:gap-2">
                     <label htmlFor="idealDate" className="text-sm font-bold">Modifier la date du mariage (date actuelle : {dateMariage})</label>
                     <p className="text-xs">La checklist sera regeneré en prenant en compte la nouvelle date du mariage.</p>
                     <input type="date" id="idealDate" value={idealDate} onChange={(e) => setIdealDate(e.target.value)} className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-500"/>
@@ -103,7 +103,7 @@ export default function EditDate({ onBack }: Props) {
                 </div>
                 } 
 
-                <button disabled={isLoading} type="submit" className="mt-4 bg-pinkk text-white px-4 py-2 rounded-lg border hover:border hover:scale-105 transition duration-300 ease-in-out">Enregistrer</button>
+                <button disabled={isLoading} type="submit" className="md:mt-4 bg-pinkk text-white px-4 py-2 rounded-lg border hover:border hover:scale-105 transition duration-300 ease-in-out">Enregistrer</button>
             </form>
         </article>
         </div>

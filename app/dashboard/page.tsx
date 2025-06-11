@@ -10,6 +10,8 @@ import AddTask from "@/components/dashboard/AddTask";
 import EditDate from "@/components/dashboard/EditDate";
 import AiQuestion from "@/components/dashboard/AiQuestion";
 import Footer from "@/components/shared/Footer";
+import { SparklesText } from "@/components/magicui/sparkles-text";
+import { useSession } from "next-auth/react";
 
 type TaskType = {
   id: string | number;
@@ -25,7 +27,10 @@ type TaskType = {
 }
 
 export default function Dashboard() {
+    const { data: session } = useSession();
+    const user = session?.user;
     const [taches, setTaches] = useState<TaskType[]>([]);
+    const [dateMariage, setDateMariage] = useState<string>("");
     const [selectedTask, setSelectedTask] = useState<TaskType | null>(null)
     const [isEditing, setIsEditing] = useState(false);
     const [addTask, setAddTask] = useState(false);
@@ -63,7 +68,39 @@ export default function Dashboard() {
             }
         };
 
+        const fetchOnBoarding = async () => { 
+        if (!session) { 
+            window.location.href = "/"; 
+            return; 
+        }
+        
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/onboarding`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            });
+
+            if (!response.ok) {
+            throw new Error("Failed to fetch onboarding status");
+            }
+
+            const data = await response.json();
+            setDateMariage(
+                data.weddingDate
+                    ? new Date(data.weddingDate).toLocaleDateString("fr-FR")
+                    : ""
+            );
+
+        } catch (error) {
+            console.error("Error fetching onboarding status:", error);
+        }
+        } 
+
+
         fetchTasks();
+        fetchOnBoarding();
     }, []);
 
     const filteredTasks = taches.filter(task => {
@@ -102,8 +139,14 @@ export default function Dashboard() {
             <GridPattern width={30} height={30} x={-1} y={-1} className={"opacity-40 [mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]"}/>
 
 
-        <section className="font-inter flex flex-col items-center mt-8 md:mt-32">
-            {/* <SparklesText className="font-sans text-xl font-medium tracking-[2px]">Bonjour Hîden - Mariage prévu le 12/10/2025</SparklesText> */}
+        <section className="font-inter flex flex-col items-center mt-8 md:mt-28">
+            {!selectedTask && !addTask && !editDateOpen && !questionOpen && (
+            <SparklesText className="px-10 text-center font-sans text-md md:text-lg font-medium tracking-widest mb-8">Bonjour {user?.name} - Mariage prévu le {dateMariage}</SparklesText> 
+            )}
+
+            {/* <div className="flex justify-between items-center w-full px-5 md:px-10">
+                <h1 className="text-2xl md:text-3xl font-bold">Ma Checklist</h1>
+                <button onClick={() => setAddTask(true)} className="text-xs text-white bg-pinkk px-4 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105">Ajouter une tâche</button>
             {/* <AnimatedCircularProgressBar max={100} value={30} min={0} gaugePrimaryColor="#DB80FF" gaugeSecondaryColor="#E5E7EB" className="mt-10 w-[50px] h-[50px] text-md"/> */}
 
             {selectedTask && isEditing && !addTask && !editDateOpen && !questionOpen && (
@@ -120,7 +163,7 @@ export default function Dashboard() {
             )}
 
             {!selectedTask && !addTask && !editDateOpen && !questionOpen && (
-                <div className="flex flex-col gap-7 md:gap-4 mb-10">
+                <div className="flex flex-col gap-10 md:gap-7 mb-10">
                     {filteredTasks.map(task => (
                         <Task
                         key={task.id}
@@ -140,7 +183,7 @@ export default function Dashboard() {
 
            {!isEditing && !editDateOpen && !addTask && questionOpen && selectedTask && <AiQuestion task={selectedTask} onBack={() => {setQuestionOpen(false)}}  />}
 
-            <Footer />
+            {/* <Footer /> */}
         </section>
 
 

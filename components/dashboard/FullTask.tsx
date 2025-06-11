@@ -131,20 +131,21 @@ export default function FullTask({ task, onBack, onEdit, onQuestion }: Props) {
                 </div>
                 <div className="flex flex-col h-full mt-5 gap-5">
                     <p className="tracking-[2px] font-bold text-xl text-center">{task.title}</p>
-                    <p className="font-sans text-sm opacity-60 leading-5 text-left">{before}  {conseil && ( <><br /><br /> <strong>{conseil}</strong></> )}</p>
+                    <p className="font-sans text-sm opacity-60 leading-5 text-left">{before}  {conseil && ( <><br /><br />  <span className="italic font-light">{conseil}</span></> )}</p>
                     
 
                     {/* <button className="ml-[-30] text-center px-5 py-1 text-xs bg-pinkk rounded-2xl text-white w-36 tracking-widest">Conseil de l'IA </button> */}
                     <div className="flex justify-between items-center mt-2">
-                        <div className="flex gap-2 items-center">
-                            {isMasked ? 
-                            <button disabled={isMaskLoading} title="Afficher la tâche" className="transition duration-300 ease-in-out hover:scale-105" onClick={handleMask}><VisibilityIcon/></button> : 
-                            <button disabled={isMaskLoading} title="Afficher la tâche" className="transition duration-300 ease-in-out hover:scale-105" onClick={handleMask}><VisibilityOffIcon/></button>
+                        <div className="flex gap-3 items-center">
+                             {isMasked ? 
+                            <button disabled={isMaskLoading} onClick={handleMask} className="text-xs text-black border border-black px-5 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105 hover:text-white hover:border-pinkk hover:bg-pinkk">Rendre visible la tâche</button> : 
+                            <button disabled={isMaskLoading} onClick={handleMask} className="text-xs text-black border border-black px-5 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105 hover:text-white hover:border-pinkk hover:bg-pinkk"> Masquer la tâche</button>
                             }
-                        <button onClick={onEdit} className="text-xs text-black border border-black px-5 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105 hover:text-white hover:bg-black">Modifier cette tâche</button>
+                        <button onClick={onEdit} className="text-xs text-black border border-black px-5 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105 hover:text-white hover:border-pinkk hover:bg-pinkk">Modifier la tâche</button>
+                        <button onClick={onQuestion} className="text-xs text-black border border-black px-5 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105 hover:text-white hover:border-pinkk hover:bg-pinkk">Poser une question à l&lsquo;IA</button>
                         </div>
                         <div className="flex gap-2">
-                        <button onClick={onQuestion} className="text-xs text-white border border-pinkk bg-pinkk px-5 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105">Poser une question à l&lsquo;IA</button>
+                        {/* <button onClick={onQuestion} className="text-xs text-white border border-pinkk bg-pinkk px-5 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105">Poser une question à l&lsquo;IA</button> */}
                         <SmartToyIcon className="transition duration-300 ease-in-out hover:scale-105 text-pinkk mr-2 " />
                         </div>
                     </div>
@@ -169,19 +170,14 @@ export default function FullTask({ task, onBack, onEdit, onQuestion }: Props) {
                     <div className="flex gap-5 items-center text-[9px]">
                         <div className="flex items-center gap-1">                          
                             <p className=" text-white bg-pinkk rounded-2xl px-5 py-1">Lieu</p>
-                             <div className="flex gap-2 items-center ml-2">
-                                {isMasked ? 
-                                <button disabled={isMaskLoading} title="Afficher la tâche" className="transition duration-300 ease-in-out hover:scale-105" onClick={handleMask}><VisibilityIcon/></button> : 
-                                <button disabled={isMaskLoading} title="Afficher la tâche" className="transition duration-300 ease-in-out hover:scale-105" onClick={handleMask}><VisibilityOffIcon/></button>
-                                }
-                            </div>
+ 
                         </div>
                         
                     </div>
                 </div>
                 <div className="flex flex-col h-full mt-5 gap-5">
                     <p className="tracking-[2px] font-bold text-md text-center">{task.title}</p>
-                    <p className="font-sans text-xs opacity-60 leading-5 text-left">{before}  {conseil && ( <><br /><br /> <strong>{conseil}</strong></> )}</p>
+                    <p className="font-sans  text-xs opacity-60 leading-5 text-left">{before}  {conseil && ( <><br /><br /> <span className="italic font-light">{conseil}</span></> )}</p>
                     
 
                     {/* <button className="ml-[-30] text-center px-5 py-1 text-xs bg-pinkk rounded-2xl text-white w-36 tracking-widest">Conseil de l'IA </button> */}
@@ -192,11 +188,16 @@ export default function FullTask({ task, onBack, onEdit, onQuestion }: Props) {
                             <button disabled={isMaskLoading} title="Afficher la tâche" className="transition duration-300 ease-in-out hover:scale-105" onClick={handleMask}><VisibilityOffIcon/></button>
                             }
                         </div> */}
-                        <div className="flex flex-col gap-2">
-                            <button onClick={onEdit} className="text-xs text-black border border-black px-2 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105 hover:text-white hover:bg-black">Modifier cette tâche</button>
-                            <button onClick={onQuestion} className="text-xs text-white border border-pinkk bg-pinkk px-2 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105">Poser une question à l&lsquo;IA</button>
-                        </div>
+                       
                     </div>
+                </div>
+                 <div className="flex flex-col gap-3">
+                    <button onClick={onEdit} className="text-xs text-black border border-black px-2 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105 hover:text-white hover:border-pinkk hover:bg-pinkk">Modifier cette tâche</button>
+                    <button onClick={onQuestion} className="text-xs text-black border border-black px-2 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105 hover:text-white hover:border-pinkk hover:bg-pinkk">Poser une question à l&lsquo;IA</button>
+                    {isMasked ? 
+                    <button disabled={isMaskLoading} onClick={handleMask} className="text-xs text-black border border-black px-2 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105 hover:text-white hover:border-pinkk hover:bg-pinkk">Rendre visible la tâche</button> : 
+                    <button disabled={isMaskLoading} onClick={handleMask} className="text-xs text-black border border-black px-2 py-1 rounded-xl transition duration-300 ease-in-out hover:scale-105 hover:text-white hover:border-pinkk hover:bg-pinkk">Masquer la tâche</button>
+                    }
                 </div>
                     
             </article>

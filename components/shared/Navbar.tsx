@@ -27,8 +27,13 @@ export default function Navbar({user} : Props) {
 
     return (
         <>
-        <nav className="font-inter hidden sm:block mt-5 mx-40 text-sm text-black tracking-widest">
-            <div className="flex justify-between items-center h-[52px] rounded-2xl ">
+        <nav className="font-inter hidden sm:block  text-sm text-black tracking-widest">
+
+          <div className="flex justify-center items-center bg-pinkk w-full py-1 text-white font-bold">
+            <p>Offre exclusive en cours !</p>
+          </div>
+
+            <div className="mx-40 flex justify-between items-center h-[52px] rounded-2xl mt-5">
                 <Link href="/"><p className="text-4xl font-hatch text-[#DB80FF] px-5">EW</p></Link>
                 <div className="flex justify-center items-center lg:space-x-20 ml-10 text-black/70 tracking-[2px]">                    
                     <Link href="/" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Accueil</Link>
@@ -45,7 +50,7 @@ export default function Navbar({user} : Props) {
                     <p className="bg-pinkk text-white font-bold px-5 rounded-xl py-1">Bonjour, {session?.user?.name} !</p>
                     <button id="menu-button" onClick={toggleMenu} className="hover:scale-105 transition duration-300 ease-in-out"><MoreVertIcon className="opacity-60" /></button>
                     {isOpen && (
-                    <div aria-orientation="vertical" aria-labelledby="menu-button" className="absolute right-12 top-16 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden" role="menu">
+                    <div aria-orientation="vertical" aria-labelledby="menu-button" className="absolute right-12 top-20 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden" role="menu">
                         <div className="py-1" role="none">
                         <button onClick={() => signOut()} className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:text-black" role="menuitem"  id="menu-item-3">Se déconnecter</button>
                         </div>
@@ -59,8 +64,11 @@ export default function Navbar({user} : Props) {
         </nav>
 
         {/* NAVBAR MOBILE ------------------------------------------------------------------------------------------------ */}
-        <nav className="sm:hidden mt-7 font-sans text-xs text-black tracking-widest">
-            <div className="flex justify-between items-center h-[52px] px-5 rounded-2xl ">
+        <nav className="sm:hidden font-sans text-xs text-black tracking-widest">
+          <div className="flex justify-center items-center bg-pinkk w-full py-2 text-white font-bold">
+              <p>Offre exclusive en cours !</p>
+          </div>
+            <div className="flex justify-between items-center h-[52px] px-5 rounded-2xl mt-5">
                 <Link href="/" className="text-4xl font-hatch text-[#DB80FF] ">EW</Link>
                
                {session ?

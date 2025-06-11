@@ -34,6 +34,7 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
     return (
         <>
         <div className="hidden md:block font-inter z-50 fixed top-5 left-5">
+            <div className="flex items-center gap-2">
             <AnimatedCircularProgressBar
             max={100}
             value={progress}
@@ -42,6 +43,8 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
             gaugeSecondaryColor="#E5E7EB"
             className="w-[50px] h-[50px] text-md"
             />
+             <p className="text-black text-xs tracking-widest opacity-40 font-bold ">Progression</p>
+             </div>
         </div>
 
         <nav className="hidden z-50 fixed top-5 left-1/2 transform -translate-x-1/2 text-sm font-inter md:flex justify-center md:justify-between px-3 items-center text-white bg-pinkk w-[350px] md:w-[1000px] rounded-3xl py-2 tracking-widest">
@@ -85,15 +88,16 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
         </nav>
 
         <div className="md:hidden mt-24 flex gap-2 justify-between px-10 items-center ">
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
                 <AnimatedCircularProgressBar
                 max={100}
                 value={progress}
                 min={0}
                 gaugePrimaryColor="#DB80FF"
                 gaugeSecondaryColor="#E5E7EB"
-                className="w-[35px] h-[35px] text-sm"
+                className="w-[45px] h-[45px] text-sm"
                 />
+                <p className="text-black text-xs tracking-widest opacity-40 font-bold ">Progression</p>
             </div>
 
             <div className="flex gap-2">
@@ -110,7 +114,7 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
             </Link>
 
         
-            <div className="text-[8px] flex justify-center items-center space-x-2 mr-6 tracking-[2px]">
+            <div className="text-[9px] flex justify-center items-center space-x-2 mr-6 tracking-[2px]">
                 <select onChange={(e) => onStatusChange && onStatusChange(e.target.value)} className="bg-transparent">
                     <option className="text-black" value="">Status (tous)</option>
                     <option className="text-black" value="todo">À faire</option>

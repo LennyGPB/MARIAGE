@@ -67,7 +67,7 @@ export default function AiQuestion({ onBack, task }: Props) {
                 <div className="flex flex-col gap-2">
                     <label htmlFor="title" className="text-sm font-medium">Une idée, une question ?</label>
                     <p className="text-xs text-black/70 mb-2">Besoin d’un conseil sur cette tâche ? Demandez à l’IA !</p>
-                    <input type="text" id="title" value={question} onChange={(e) => setQuestion(e.target.value)} className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                    <input required type="text" id="title" value={question} onChange={(e) => setQuestion(e.target.value)} className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-500" />
                 </div>
 
                 {answer && 
@@ -92,7 +92,7 @@ export default function AiQuestion({ onBack, task }: Props) {
                 </div>
                  } 
 
-                <button type="submit" className="mt-2 bg-pinkk text-white px-4 py-2 rounded-lg border hover:border hover:scale-105 transition duration-300 ease-in-out">Poser ma question</button>
+                <button disabled={isLoading} type="submit" className="mt-2 bg-pinkk text-white px-4 py-2 rounded-lg border hover:border hover:scale-105 transition duration-300 ease-in-out">Poser ma question</button>
             </form>
         </article>
         </div>

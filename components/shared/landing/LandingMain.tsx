@@ -25,7 +25,7 @@ export default function LandingMain({user} : Props) {
 
             <div className="flex flex-col md:flex gap-3 md:gap-5 justify-center items-center mt-20 md:mt-20">  
             <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"}><ShimmerButton background="#DB80FF" borderRadius="20px" shimmerColor="white" className="text-md w-[350px] md:text-md md:w-[550px] text-white tracking-widest uppercase hover:scale-105 transition duration-300 ease-in-out"><span className="font-bold md:text-xl">Commencer gratuitement</span></ShimmerButton></Link>
-            <Link href="/#faq"><ShimmerButton background="white" borderRadius="20px" shimmerColor="white" className="px-2 w-[350px] md:w-[550px] text-black/70 tracking-widest border border-black/30 hover:scale-105 transition duration-300 ease-in-out"><span className="text-md">F.A.Q</span></ShimmerButton></Link>
+            <Link href="/#faq"><ShimmerButton background="white" borderRadius="20px" shimmerColor="white" className="px-2 w-[350px] md:w-[550px] text-black/70 tracking-widest border border-black/30 hover:scale-105 transition duration-300 ease-in-out"><span className="text-md">Comment utiliser l’application ?</span></ShimmerButton></Link>
             </div>
             
         </article>

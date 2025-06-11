@@ -3,6 +3,8 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useState } from 'react';
+import { Marquee } from "@/components/magicui/marquee";
+import { SparklesText } from '@/components/magicui/sparkles-text';
 
 type Props = {
   user?: {
@@ -44,6 +46,7 @@ export default function Pricing({user} : Props) {
         <article id="price" className="z-50 font-sans flex flex-col justify-center items-center tracking-wide mt-24 mb-20">
 
             <h2 className="tracking-widest font-light text-4xl">Tarif - <span className=" font-bold">Premium</span></h2>
+            <SparklesText className='text-center text-md md:text-xl font-light mt-7'><span className="font-bold">Offre exclusive</span>  : seulement <span className="font-bold">29 €</span> au lieu de 49 €, pour un temps limité !</SparklesText>
             <p className="text-center text-black/50 text-md font-light mt-7 w-[350px] md:w-[1000px]">Accède à ta <span className="font-medium">checklist intelligente</span> et <span className="font-medium">ultra-personnalisée</span> pour organiser ton mariage <span className="font-medium">sereinement.</span> <br />
                 Plus de 50 tâches générées par IA, prêtes à l’emploi. Profite de toutes les fonctionnalités en illimité, <span className="font-medium">à vie !</span>
             </p>
@@ -80,6 +83,11 @@ export default function Pricing({user} : Props) {
                 <Image className="hidden md:block" src="/images/lover.png" alt="Offre Premium" width={500} height={500} />
             </div>
             
+
+            {/* <div className="flex flex-col text-sm mt-10 px-5 py-4 rounded-xl w-96 [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]">
+                <p>Jack</p>
+                <p className="0">I've never seen anything like this before. It's amazing. I love it.</p>
+            </div> */}
         </article>
         </>
     )

@@ -11,6 +11,7 @@ import EditDate from "@/components/dashboard/EditDate";
 import AiQuestion from "@/components/dashboard/AiQuestion";
 import { SparklesText } from "@/components/magicui/sparkles-text";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 type TaskType = {
   id: string | number;
@@ -26,7 +27,8 @@ type TaskType = {
 }
 
 export default function Dashboard() {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
+    const router = useRouter();
     const user = session?.user;
     const [taches, setTaches] = useState<TaskType[]>([]);
     const [dateMariage, setDateMariage] = useState<string>("");
@@ -39,6 +41,11 @@ export default function Dashboard() {
     const [filterVisible, setFilterVisible] = useState<"true" | "false" | "">("");
     const [filterCategory, setFilterCategory] = useState<string>("");
 
+    useEffect(() => {
+    if (status === "unauthenticated") {
+        router.push("/");
+    }
+    }, [status, router]);
 
     const refreshTasks = async () => {
         try {
@@ -68,11 +75,6 @@ export default function Dashboard() {
         };
 
         const fetchOnBoarding = async () => { 
-        if (!session) { 
-            window.location.href = "/"; 
-            return; 
-        }
-        
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/onboarding`, {
             method: "GET",
@@ -82,7 +84,7 @@ export default function Dashboard() {
             });
 
             if (!response.ok) {
-            throw new Error("Failed to fetch onboarding status");
+                throw new Error("Erreur lors de la récupération de l'onboarding");
             }
 
             const data = await response.json();
@@ -96,7 +98,6 @@ export default function Dashboard() {
             console.error("Error fetching onboarding status:", error);
         }
         } 
-
 
         fetchTasks();
         fetchOnBoarding();
@@ -135,8 +136,8 @@ export default function Dashboard() {
             tasks={taches}
 
         />
-            <GridPattern width={30} height={30} x={-1} y={-1} className={"opacity-40 [mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]"}/>
 
+        <GridPattern width={30} height={30} x={-1} y={-1} className={"opacity-40 [mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]"}/>
 
         <section className="font-inter flex flex-col items-center mt-8 md:mt-28">
             {!selectedTask && !addTask && !editDateOpen && !questionOpen && (

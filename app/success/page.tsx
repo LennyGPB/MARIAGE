@@ -4,6 +4,7 @@ import Navbar from "@/components/shared/Navbar";
 import { SparklesText } from "@/components/magicui/sparkles-text";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
 export default function SuccessPage() {
   const { data: session } = useSession();
@@ -62,6 +63,7 @@ export default function SuccessPage() {
           throw new Error("Failed to submit quiz");
         }
 
+        await getSession();
         window.location.href = `/dashboard`;
       } catch (error) {
         console.error("Erreur lors du processus complet:", error);
@@ -70,6 +72,8 @@ export default function SuccessPage() {
 
     checkUserAndGenerateChecklist();
   }, []);
+
+
 
  
   return (

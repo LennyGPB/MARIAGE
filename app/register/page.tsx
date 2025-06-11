@@ -4,12 +4,12 @@ import { BorderBeam } from "@/components/magicui/border-beam";
 import Navbar from "@/components/shared/Navbar";
 import { useState } from "react";
 import GoogleIcon from '@mui/icons-material/Google';
+import { signIn } from "next-auth/react";
 
 export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { signIn } = require("next-auth/react");
-
+    
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Email:", email);

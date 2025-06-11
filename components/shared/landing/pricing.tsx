@@ -45,7 +45,7 @@ export default function Pricing({user} : Props) {
         <article id="price" className="z-50 font-sans flex flex-col justify-center items-center tracking-wide mt-24 mb-20">
 
             <h2 className="tracking-widest font-light text-4xl">Tarif - <span className=" font-bold">Premium</span></h2>
-            <SparklesText className='text-center text-md md:text-xl font-light mt-7'><span className="font-bold">Offre exclusive</span>  : seulement <span className="font-bold">29 €</span> au lieu de 49 €, pour un temps limité !</SparklesText>
+            <SparklesText className='w-[350px] md:w-[1000px] text-center text-md md:text-xl font-light mt-7'><span className="font-bold">Offre exclusive</span>  : seulement <span className="font-bold">29 €</span> au lieu de 49 €, pour un temps limité !</SparklesText>
             <p className="text-center text-black/50 text-md font-light mt-7 w-[350px] md:w-[1000px]">Accède à ta <span className="font-medium">checklist intelligente</span> et <span className="font-medium">ultra-personnalisée</span> pour organiser ton mariage <span className="font-medium">sereinement.</span> <br />
                 Plus de 50 tâches générées par IA, prêtes à l’emploi. Profite de toutes les fonctionnalités en illimité, <span className="font-medium">à vie !</span>
             </p>

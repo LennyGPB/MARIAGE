@@ -101,11 +101,16 @@ export default function Navbar({user} : Props) {
                 <div className="flex flex-col gap-3 text-black/80">
                     <Link href="/">Accueil</Link>
                     <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"}>Ma checklist</Link>
-                    <Link href="#/#price">Prix</Link>
+                    <Link href="/#price">Prix</Link>
                     <Link href="/support">Support</Link>
                 </div>
 
+                {!session &&
                 <Link href="/login" className="bg-[#DB80FF] text-center text-white px-5 py-1 rounded-lg font-bold uppercase mt-5">Se connecter</Link>
+                }
+                {session &&
+                <button onClick={() => signOut()} className="bg-[#DB80FF] text-center text-white px-5 py-1 rounded-lg font-bold uppercase mt-5">Se déconnecter</button>
+                }
 
                 
                 </div>

@@ -100,10 +100,10 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
                 <p className="text-black text-xs tracking-widest opacity-40 font-bold ">Progression</p>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-3">
           
-            <button onClick={onAddTask} className=" text-white p-1 rounded-2xl bg-pinkk hover:scale-105 transition duration-300 ease-in-out"><AddIcon /></button>
-            <button onClick={onEditDate} className=" text-white p-1 rounded-2xl bg-pinkk hover:scale-105 transition duration-300 ease-in-out"><EditCalendarIcon /></button>
+            <button onClick={onAddTask} className=" text-white p-2 rounded-2xl bg-pinkk hover:scale-105 transition duration-300 ease-in-out"><AddIcon /></button>
+            <button onClick={onEditDate} className=" text-white p-2 rounded-2xl bg-pinkk hover:scale-105 transition duration-300 ease-in-out"><EditCalendarIcon /></button>
             </div>
 
         </div>
@@ -114,7 +114,7 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
             </Link>
 
         
-            <div className="text-[9px] flex justify-center items-center space-x-2 mr-6 tracking-[2px]">
+            <div className="text-[9px] flex justify-center items-center space-x-3 mr-6 tracking-[2px]">
                 <select onChange={(e) => onStatusChange && onStatusChange(e.target.value)} className="bg-transparent">
                     <option className="text-black" value="">Status (tous)</option>
                     <option className="text-black" value="todo">À faire</option>

@@ -1,5 +1,5 @@
 import LandingMain from "@/components/shared/landing/LandingMain";
-import Pricing from "@/components/shared/landing/pricing";
+//import Pricing from "@/components/shared/landing/pricing";
 import Navbar from "@/components/shared/Navbar";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
@@ -8,7 +8,8 @@ import AccordionComponent from "@/components/shared/landing/Accordion";
 import Velocity from "@/components/shared/landing/Velocity";
 import Footer from "@/components/shared/Footer";
 import Head from "next/head";
-
+import { ShimmerButton } from "@/components/magicui/shimmer-button";
+import Link from "next/link";
 export default async function Home() {
   const session = await getServerSession(authConfig);
   let user = null;
@@ -41,8 +42,13 @@ export default async function Home() {
       <LandingMain user={user} />
       <Velocity />
       <AccordionComponent />
-      <Pricing user={user} />
+      {/* <Pricing user={user} /> */}
+      <div className="flex justify-center font-sans">
+        <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"}><ShimmerButton background="#DB80FF" borderRadius="20px" shimmerColor="white" className="text-md w-[350px] md:text-md md:w-[550px] text-white tracking-widest uppercase hover:scale-105 transition duration-300 ease-in-out"><span className="font-bold md:text-xl">Commencer gratuitement</span></ShimmerButton></Link>
+      </div>
       <Footer />
+
+
     </>
   );
 }

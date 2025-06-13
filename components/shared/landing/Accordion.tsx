@@ -44,11 +44,19 @@ export default async  function AccordionComponent() {
                 ✅ Pas de panique ! Notre IA recalcule automatiquement les dates idéales de chaque tâche pour s’adapter à ta nouvelle date. Ta checklist reste toujours à jour, sans effort.
             </AccordionContent>
         </AccordionItem>
-                <AccordionItem value="item-5">
+        <AccordionItem value="item-5">
             <AccordionTrigger className="text-md md:text-xl">Est-ce que je peux ajouter mes propres tâches ?</AccordionTrigger>
             <AccordionContent>
-                ✅ Oui ! Tu peux facilement ajouter des tâches personnalisées à ta checklist pour qu’elle corresponde parfaitement à ton mariage.            </AccordionContent>
+                ✅ Oui ! Tu peux facilement ajouter des tâches personnalisées à ta checklist pour qu’elle corresponde parfaitement à ton mariage.
+            </AccordionContent>
         </AccordionItem>
+        <AccordionItem value="item-6">
+            <AccordionTrigger className="text-md md:text-xl">Combien de temps faut-il pour créer ma checklist ?</AccordionTrigger>
+            <AccordionContent>
+                ✅ Moins d’une minute ! Il vous suffit de répondre à quelques questions, et l’IA génère automatiquement votre checklist personnalisée.
+            </AccordionContent>
+        </AccordionItem>
+        
      </Accordion>
      </article>
     </>

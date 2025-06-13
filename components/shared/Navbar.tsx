@@ -29,17 +29,17 @@ export default function Navbar({user} : Props) {
         <>
         <nav className="font-inter hidden sm:block text-sm text-black tracking-widest">
 
-          <div className="flex justify-center items-center bg-pinkk w-full py-1 text-white font-bold">
+          {/* <div className="flex justify-center items-center bg-pinkk w-full py-1 text-white font-bold">
             <p>Offre exclusive en cours !</p>
-          </div>
+          </div> */}
 
             <div className="md:mx-10 lg:mx-40 flex justify-between items-center h-[52px] rounded-2xl mt-5">
                 <Link href="/"><p className="text-4xl font-hatch text-[#DB80FF] px-5">EW</p></Link>
-                <div className="flex justify-center items-center md:space-x-10 lg:space-x-20 lg:ml-10 text-black/70 tracking-[2px]">                    
+                <div className="flex justify-center items-center md:space-x-10 lg:space-x-20 lg:ml-12 text-black/70 tracking-[2px]">                    
                     <Link href="/" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Accueil</Link>
-                    <Link href="/#price" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Prix</Link>
-                    <Link href="/support" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Support</Link>
+                    {/* <Link href="/#price" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Prix</Link> */}
                     <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"} className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Ma checklist</Link>
+                    <Link href="/support" className=" hover:text-gray-900 hover:scale-105 transition duration-300 ease-in-out">Support</Link>
                 </div>
                {!session && 
                 <Link href="/login" className="font-sans bg-[#DB80FF] text-white px-5 py-1 rounded-lg font-bold uppercase hover:scale-105 transition duration-300 ease-in-out">Se connecter</Link>
@@ -65,9 +65,9 @@ export default function Navbar({user} : Props) {
 
         {/* NAVBAR MOBILE ------------------------------------------------------------------------------------------------ */}
         <nav className="sm:hidden font-sans text-xs text-black tracking-widest">
-          <div className="flex justify-center items-center bg-pinkk w-full py-2 text-white font-bold">
+          {/* <div className="flex justify-center items-center bg-pinkk w-full py-2 text-white font-bold">
               <p>Offre exclusive en cours !</p>
-          </div>
+          </div> */}
             <div className="flex justify-between items-center h-[52px] px-5 rounded-2xl mt-5">
                 <Link href="/" className="text-4xl font-hatch text-[#DB80FF] ">EW</Link>
                
@@ -98,10 +98,10 @@ export default function Navbar({user} : Props) {
                     <Link href="/" className="text-4xl font-hatch text-[#DB80FF]">EW</Link>
                   </div>
 
-                <div className="flex flex-col gap-3 text-black/80">
+                <div className="font-sans flex flex-col gap-3 text-black/80">
                     <Link href="/">Accueil</Link>
                     <Link href={user?.hasChecklist ? "/dashboard" : "/quiz"}>Ma checklist</Link>
-                    <Link href="/#price">Prix</Link>
+                    {/* <Link href="/#price">Prix</Link> */}
                     <Link href="/support">Support</Link>
                 </div>
 

@@ -38,9 +38,9 @@ export default function Login() {
                 <BorderBeam size={100} colorFrom="#DB80FF" colorTo="#DB80FF" />
                 <h2 className="text-xl mb-4 text-center tracking-[2px]">Vous êtes de retour !</h2>
 
-                <button type="button" onClick={() => signIn("google", { callbackUrl: "/" })} className="font-sans font-medium px-5 mx-auto flex justify-center items-center gap-2 bg-black  text-white py-2 rounded-xl hover:scale-105 transition duration-300 ease-in-out">
+                <button type="button" onClick={() => signIn("google", { callbackUrl: "/" })} className=" font-sans font-medium px-5 mx-auto flex justify-center items-center gap-2 bg-black text-white py-2 rounded-xl hover:scale-105 transition duration-300 ease-in-out">
                     Continuer avec Google
-                    <GoogleIcon />
+                    <GoogleIcon  />
                 </button>
 
                 <div className="flex items-center my-4">

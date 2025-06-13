@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "react-day-picker/style.css";
 import { Providers } from "./providers";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

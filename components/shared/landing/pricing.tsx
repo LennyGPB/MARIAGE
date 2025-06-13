@@ -64,11 +64,13 @@ export default function Pricing({user} : Props) {
                         <p className="font-bold text-3xl line-through text-gray-400">49$</p>
                         <p className="font-bold text-3xl ml-2">29$/</p>
                         <p className=" text-md">à vie</p>
+                        
                     </div>
+                    <p className='opacity-55 mx-5 text-xs mt-5'>🔒 Paiement 100 % sécurisé</p>
 
                     {/* <p className="text-sm mt-4 mx-5">BLABLABLABLA</p> */}
 
-                    <div className="flex flex-col gap-2 mx-5 mt-7 text-sm ">
+                    <div className="flex flex-col gap-2 mx-5 mt-5 text-sm ">
                         <p><CheckCircleIcon className="mr-1 text-pinkk" /> Checklist personnalisée</p>
                         <p><CheckCircleIcon className="mr-1 text-pinkk"/> Nombre de tâches illimitées</p>
                         <p><CheckCircleIcon className="mr-1 text-pinkk"/> Vue par catégorie et par mois</p>

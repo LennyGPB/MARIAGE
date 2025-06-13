@@ -43,7 +43,7 @@ export default function NavbarDashboard({onAddTask, onStatusChange, onVisibleCha
             gaugeSecondaryColor="#E5E7EB"
             className="w-[50px] h-[50px] text-md"
             />
-             <p className="text-black text-xs tracking-widest opacity-40 font-bold ">Progression</p>
+             <p className="hidden 2xl:block text-black text-xs tracking-widest opacity-40 font-bold ">Progression</p>
              </div>
         </div>
 

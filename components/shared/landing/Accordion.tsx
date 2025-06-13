@@ -56,6 +56,11 @@ export default async  function AccordionComponent() {
                 ✅ Moins d’une minute ! Il vous suffit de répondre à quelques questions, et l’IA génère automatiquement votre checklist personnalisée.
             </AccordionContent>
         </AccordionItem>
+        <AccordionItem value="item-7">
+            <AccordionTrigger className="text-md md:text-xl">Mes données sont-elles sécurisées ?</AccordionTrigger>
+            <AccordionContent>
+                ✅ Oui, toutes vos données sont stockées de façon sécurisée et confidentielle. Nous utilisons des technologies fiables et respectons les bonnes pratiques de protection des informations personnelles. Rien n’est partagé sans votre accord.            </AccordionContent>
+        </AccordionItem>
         
      </Accordion>
      </article>
